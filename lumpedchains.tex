@@ -1,0 +1,292 @@
+\documentclass[12pt]{article}
+
+\input{../../../../etc/macros}
+%\input{../../../../etc/mzlatex_macros}
+\input{../../../../etc/pdf_macros}
+
+\bibliographystyle{plain}
+
+\begin{document}
+
+\myheader
+\mytitle
+
+\hr
+
+\sectiontitle{}
+
+\hr
+
+\usefirefox
+
+\hr
+
+\visual{Study Tip}{../../../../CommonInformation/Lessons/studytip.png}
+\section*{Study Tip}
+
+\hr
+
+\visual{Rating}{../../../../CommonInformation/Lessons/rating.png}
+\section*{Rating} %one of 
+% Everyone: contains no mathematics.
+% Student: contains scenes of mild algebra or calculus that may require guidance.
+% Mathematically Mature: may contain mathematics beyond calculus with proofs.
+% Mathematicians Only: prolonged scenes of intense rigor.
+
+\hr
+
+\visual{Section Starter Question}{../../../../CommonInformation/Lessons/question_mark.png}
+\section*{Section Starter Question}
+
+\hr
+
+\visual{Key Concepts}{../../../../CommonInformation/Lessons/keyconcepts.png}
+\section*{Key Concepts}
+
+\begin{enumerate}
+  \item Denote the transition probability
+of the Markov chain $X_n$ from state $x_i$ to state $x_j$, for \( i, j
+= 1, \dots,  r\) , by \( p_{ij} \).  A 
+necessary and sufficient condition for the Markov chain $X$ to be lumpable
+with respect to the partition $S$ is that for every pair of sets
+$E_{\xi}$ and $E_{\eta}$, \( sum_{x_k \in E_{\eta}} p_{ik} \) has the
+same value for every \(x_i \in E_{\xi} \). These common values form
+the transition probabilities $p_{\xi, \eta}$ for the lumped chain.
+
+  \item 
+  \item 
+\end{enumerate}
+
+\hr
+
+\visual{Vocabulary}{../../../../CommonInformation/Lessons/vocabulary.png}
+\section*{Vocabulary}
+\begin{enumerate}
+  \item   Let $X_n$ be a Markov chain with state space \( \mathcal{X} =
+\set{x_1 x_2, \dots x k} \) and initial distribution \( \xi \). Given a
+partition \( \bar{S} = \set{E_1, E_2,  \dots, E_v} \) of the state space
+  $S$, a new chain \( \bar{X}_n \) can be defined as
+follows: At the $j$th step, the state of the new chain is the set
+$E_k$ when $E_k$ contains the state of the $j$th step of the original
+chain. Assign the transition probabilities for $\bar{X}_n$ as follows:
+The initial distribution is
+\[
+  \prob{\bar{X}_0 = E_i} = \probsub{X_0 \in E_i}.
+\]
+Given the initial state, the transition probability for step $1$ is
+\[
+  \prob{\bar{X}_1 = E_j \given \bar{X}_0 = E_i} = \probsub{\xi}{X_0}
+  \in E_i }.
+\]
+In general for the $n$th step
+\[
+  \prob{\bar{X}_1 = E_t \given \bar{X}_{n-1} = E_{s_{n-1}},
+    \bar{X}_{n-2} = E_{s_{n-2}}, \dots,  \bar{X}_1 = E_{s_1},
+    \bar{X}_0 = E_i} = \probsub{\xi}{X_0} \in E_i \given X_{n-1} \in E_{s_{n-1}},
+    X_{n-2} \in E_{s_{n-2}}, \dots,  X_1 \in E_{s_1},
+    X_0 \in E_i}.
+\]
+Call this new chain \( \bar{X}_n \), a \defn{lumped
+  chain}\index{lumped chain} of the
+Markov chain \( X_n \).
+
+  \item 
+  A Markov chain with $X_n$ state space with state space $\mathcal{X}$
+  is said to be \defn{lumpable}\index{lumpable} with respect to a partition $S$ of
+  $\mathcal{X}$ if for every starting distribution \( X_0 \) the lumped chain \(
+  \bar{X}_n \) is a Markov chain with state space $S$ and the
+  associated transition probabilities do not depend on the choice of
+  $X_0$.  
+\end{enumerate}
+
+\hr
+
+\visual{Mathematical Ideas}{../../../../CommonInformation/Lessons/mathematicalideas.png}
+\section*{Mathematical Ideas}
+
+It is often convenient to partition the states of a chain into
+aggregates or lumps and to view the dynamics at a coarser level as the
+system of interest moves among the lumps. Examples of such aggregation
+include a weather model lumping the states ``drizzle'', ``rain'' and
+``snow'' into one state called ``precipitation'' or a physical model
+aggregating the microstates of a physical system into so-called coarse
+grained ‘‘mesostates’’ each representing many microstates. Although
+the dynamics moving between the lumps is not even Markovian in general
+[10], there is a natural choice for a Markov chain model on the set of
+lumped states. This choice [10—13] matches the time evolution of the
+original unlumped chain started at equilibrium. In the present work we
+bound the error of the dynamics predicted by this lumped chain
+considered as a model of the unlumped chain. Our goal in this letter
+is to analyze the accuracy of such coarse grained models as compared
+to the exact microscopic behavior, i.e. to bound the error in a
+coarse grained description.
+
+\subsection*{Lumpable Markov Chains}
+
+%% https://www.math.pku.edu.cn/teachers/yaoy/Fall2011/Kemeny-Snell_Chapter6.3-4.pdf
+%% https://web.nmsu.edu/~jtian/PB/2006-3.pdf
+%% https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3207820/
+%% http://www.sci.sdsu.edu/~salamon/OLPpublished.pdf
+
+\begin{definition}
+  Let $X_n$ be a Markov chain with state space \( \mathcal{X} =
+\set{x_1 x_2, \dots x k} \) and initial distribution \( \xi \). Given a
+partition \( \bar{S} = \set{E_1, E_2,  \dots, E_v} \) of the state space
+  $S$, a new chain \( \bar{X}_n \) can be defined as
+follows: At the $j$th step, the state of the new chain is the set
+$E_k$ when $E_k$ contains the state of the $j$th step of the original
+chain. Assign the transition probabilities for $\bar{X}_n$ as follows:
+The initial distribution is
+\[
+  \prob{\bar{X}_0 = E_i} = \probsub{X_0 \in E_i}.
+\]
+Given the initial state, the transition probability for step $1$ is
+\[
+  \prob{\bar{X}_1 = E_j \given \bar{X}_0 = E_i} = \probsub{\xi}{X_0}
+  \in E_i }.
+\]
+In general for the $n$th step
+\[
+  \prob{\bar{X}_1 = E_t \given \bar{X}_{n-1} = E_{s_{n-1}},
+    \bar{X}_{n-2} = E_{s_{n-2}}, \dots,  \bar{X}_1 = E_{s_1},
+    \bar{X}_0 = E_i} = \probsub{\xi}{X_0} \in E_i \given X_{n-1} \in E_{s_{n-1}},
+    X_{n-2} \in E_{s_{n-2}}, \dots,  X_1 \in E_{s_1},
+    X_0 \in E_i}.
+\]
+Call this new chain \( \bar{X}_n \), a \defn{lumped
+  chain}\index{lumped chain} of the
+Markov chain \( X_n \).
+\end{definition}
+
+A lumped chain of a given Markov chain need not be a Markov chain in
+general. [Need example]
+
+\begin{definition}
+  A Markov chain with $X_n$ state space with state space $\mathcal{X}$
+  is said to be \defn{lumpable}\index{lumpable} with respect to a partition $S$ of
+  $\mathcal{X}$ if for every starting distribution \( X_0 \) the lumped chain \(
+  \bar{X}_n \) is a Markov chain with state space $S$ and the
+  associated transition probabilities do not depend on the choice of
+  $X_0$.  
+\end{definition}
+
+The following theorem gives a necessary and sufficient for a Markov
+chain to be lumpable.
+
+\begin{theorem}
+Denote the transition probability
+of the Markov chain $X_n$ from state $x_i$ to state $x_j$, for \( i, j
+= 1, \dots,  r\) , by \( p_{ij} \).  A 
+necessary and sufficient condition for the Markov chain $X$ to be lumpable
+with respect to the partition $S$ is that for every pair of sets
+$E_{\xi}$ and $E_{\eta}$, \( sum_{x_k \in E_{\eta}} p_{ik} \) has the
+same value for every \(x_i \in E_{\xi} \). These common values form
+the transition probabilities $p_{\xi, \eta}$ for the lumped chain.
+\end{theorem}
+
+
+A matrix formulation of this theorem is useful.
+Introduce some notations.
+Associated with a partition \( \mathbf{S} = \set{E_1,  E_2, \dots,
+  E_v} \) of the finite state space
+\( \mathcal{X} = \set{x_1, x_2, \dots,  x_k}\), of the underlying Markov chain $X_n$, introduce
+two useful matrices. Let $U$ be the $v \times k$ matrix whose $\eta$th
+row, \( \eta =
+1, 2, \dots, v \), is the probability vector having equal components for states
+in $E_{\xi}$ and $0$ elsewhere. Let $V$ be the $r \times v$ matrix with the $\eta$th column,
+\( \eta = 1, 2, \dots, v \), is a vector with $1$s in the components corresponding to
+states in $E_{\eta}$, and $0$ elsewhere.  It's easy to check that $UV
+= I$.
+
+\begin{theorem}
+  f $P$ is the transition probability matrix of the Markov chain
+$X_n$, then $X_n$ is lumpable with respect to the partition $\mathcal{S}$, if and only if
+\( VUPV = PV \).
+\end{theorem}
+
+
+\subsection*{}
+
+\visual{Section Starter Question}{../../../../CommonInformation/Lessons/question_mark.png}
+\section*{Section Ending Answer}
+
+\subsection*{Sources}
+This section is adapted from: 
+
+\nocite{}
+\nocite{}
+
+\hr
+
+\visual{Algorithms, Scripts, Simulations}{../../../../CommonInformation/Lessons/computer.png}
+\section*{Algorithms, Scripts, Simulations}
+
+\subsection*{Algorithm}
+
+\subsection*{Scripts}
+
+\input{ _scripts}
+
+\hr
+
+\visual{Problems to Work}{../../../../CommonInformation/Lessons/solveproblems.png}
+\section*{Problems to Work for Understanding}
+\renewcommand{\theexerciseseries}{}
+\renewcommand{\theexercise}{\arabic{exercise}}
+
+\begin{exercise}
+  
+\end{exercise}
+\begin{solution}
+  
+\end{solution}
+\begin{exercise}
+  \begin{enumerate}[label=(\alpha*)]
+  \item 
+  \end{enumerate}
+\end{exercise}
+\begin{solution}
+  \begin{enumerate}[label=(\alpha*)]
+  \item 
+  \end{enumerate}
+\end{solution}
+
+\hr
+
+\visual{Books}{../../../../CommonInformation/Lessons/books.png}
+\section*{Reading Suggestion:}
+
+\bibliography{../../../../CommonInformation/bibliography}
+
+%   \begin{enumerate}
+%     \item 
+%     \item 
+%     \item 
+%   \end{enumerate}
+
+\hr
+
+\visual{Links}{../../../../CommonInformation/Lessons/chainlink.png}
+\section*{Outside Readings and Links:}
+\begin{enumerate}
+  \item  
+  \item  
+  \item  
+  \item 
+\end{enumerate}
+
+\section*{\solutionsname}
+\loadSolutions
+
+\hr
+
+\mydisclaim \myfooter
+
+Last modified:  \flastmod
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
