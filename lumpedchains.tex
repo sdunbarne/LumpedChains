@@ -226,25 +226,92 @@ depends only on $E_t$ and $E_{t_{n-1}}$.
   \end{enumerate}
 \end{proof}
 
+\begin{example}
+  Recall the example of the weather in the land of Oz, where it is
+  rainy, nice or snowy, with probability transition matrix
+      \[
+        P = \bordermatrix{ & R & N & S \cr
+        R & 1/2 & 1/4 & 1/4 \cr
+        N & 1/2 & 0 & 1/2 \cr
+        S & 1/4 & 1/4 & 1/2 }.
+    \]
+  Now consider lumping the weather states into only ``good'' days with
+  nice weather and ``bad'' days with rainy or snowy weather.  That is,
+  choose the partition $S = \set{ \set{N}, \set{R,S}} = \set{G, B}$.
+  The probabilities of moving from $R$ to $N$ and from $S$ to $N$ are
+  the same so the condition for lumpability is satisfied.  The new
+  transition matrix is
+  \[
+    P = \bordermatrix{ G & B \cr}
+    G & 0 & 1 \cr
+    B & 1/4 & 3/4}.
+\]
+
+On the other hand, notice that the condition for lumpability is not
+satisfied for the partition $S = \set{ \set{R}, \set{N, S}}$ since
+$p_{N S_1} = p_{NR} = 1/2$ and $p_{N S_1} = p_{SR} = 1/4$.
+\end{example}
+
 A matrix formulation of this theorem is useful.
 Introduce some notations.
 Associated with a partition \( \mathbf{S} = \set{E_1,  E_2, \dots,
   E_v} \) of the finite state space
 \( \mathcal{X} = \set{x_1, x_2, \dots,  x_k}\), of the underlying Markov chain $X_n$, introduce
-two useful matrices. Let $U$ be the $v \times k$ matrix whose $\eta$th
-row, \( \eta =
-1, 2, \dots, v \), is the probability vector having equal components for states
-in $E_{\xi}$ and $0$ elsewhere. Let $V$ be the $r \times v$ matrix with the $\eta$th column,
-\( \eta = 1, 2, \dots, v \), is a vector with $1$s in the components corresponding to
-states in $E_{\eta}$, and $0$ elsewhere.  It's easy to check that $UV
-= I$.
+two useful matrices. Let $U$ be the $v \times k$ matrix whose $i$th
+row, \( \i =
+1, 2, \dots, v \), is the probability vector having equal values for states
+in $E_{\xi}$ and $0$ elsewhere. Let $V$ be the $r \times v$ matrix with the $j$th column,
+\( j = 1, 2, \dots, v \), is a vector with $1$s in the components corresponding to
+states in $E_j$, and $0$ elsewhere.  Then $UV = I$ and the lumped
+transition matrix is \( \hat{P} = UPV \).
+
+\begin{example}
+  In the previous lumped land of Oz weather example
+  \[
+    \hat{P} =
+    \begin{pmatrix}
+      0 & 1 & 0 \\
+      1/2 & 0 & 1/2
+    \end{pmatrix}
+    \begin{pmatrix}
+     1/2 & 1/4 & 1/4  \\
+     1/2 & 0 & 1/2 \\
+       1/4 & 1/4 & 1/2 
+   \end{pmatrix}
+   \begin{pmatrix}
+     0 & 1 \\
+     1 & 0 \\
+     0 & 1
+   \end{pmatrix} =
+   \begin{pmatrix}
+     0 & 1 \\
+     1/4 & 3/4
+   \end{pmatrix}
+   \]
+\end{example}
+
+Note that the rows of $PV$ corresponding to the elements in the same
+set of the partition are the same.  This will be true in general for a
+chain satisfying the condition for lumpability.  The matrix $U$ simply
+removes this duplication of rows.  The choice of $U$ is not unique,
+all that is needed is that the $i$th row should be a probability
+vecotr with non-zero components only for states in $E_i$.  FOr
+convenience, choose the vector with equal components.
+
+It is convenient to assume that the state are ordered so that those
+in $E_1$ come first, those in $E_{2}$ come next and so on with those
+in $E_r$ coming last.  From here on, assume that this ordering of
+states has been made.
+
 
 \begin{theorem}
-  f $P$ is the transition probability matrix of the Markov chain
+  if $P$ is the transition probability matrix of the Markov chain
 $X_n$, then $X_n$ is lumpable with respect to the partition $\mathcal{S}$, if and only if
 \( VUPV = PV \).
 \end{theorem}
 
+%% https://wp.kntu.ac.ir/hadizadeh/pdf/latex/lesson_12%5B1%5D.pdf
+%% for making partition matrix
 
 \subsection*{}
 
