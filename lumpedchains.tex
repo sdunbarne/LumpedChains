@@ -130,27 +130,27 @@ coarse grained description.
 
 \begin{definition}
   Let $X_n$ be a Markov chain with state space \( \mathcal{X} =
-\set{x_1 x_2, \dots x k} \) and initial distribution \( \xi \). Given a
+\set{x_1 x_2, \dots x_k} \) and initial distribution \( \xi \). Given a
 partition \( \bar{S} = \set{E_1, E_2,  \dots, E_v} \) of the state space
   $S$, a new chain \( \bar{X}_n \) can be defined as
 follows: At the $j$th step, the state of the new chain is the set
 $E_k$ when $E_k$ contains the state of the $j$th step of the original
-chain. Assign the transition probabilities for $\bar{X}_n$ as follows:
+chain.  Assign the transition probabilities for $\bar{X}_n$ as follows:
 The initial distribution is
 \[
-  \prob{\bar{X}_0 = E_i} = \probsub{X_0 \in E_i}.
+  \prob{\bar{X}_0 = E_i} = \probsub{\xi}{X_0 \in E_i}.
 \]
 Given the initial state, the transition probability for step $1$ is
 \[
-  \prob{\bar{X}_1 = E_j \given \bar{X}_0 = E_i} = \probsub{\xi}{X_0}
+  \prob{\bar{X}_1 = E_j \given \bar{X}_0 = E_i} = \probsub{\xi}{X_0
   \in E_i }.
 \]
 In general for the $n$th step
 \[
-  \prob{\bar{X}_1 = E_t \given \bar{X}_{n-1} = E_{s_{n-1}},
-    \bar{X}_{n-2} = E_{s_{n-2}}, \dots,  \bar{X}_1 = E_{s_1},
-    \bar{X}_0 = E_i} = \probsub{\xi}{X_0} \in E_i \given X_{n-1} \in E_{s_{n-1}},
-    X_{n-2} \in E_{s_{n-2}}, \dots,  X_1 \in E_{s_1},
+  \prob{\bar{X}_n = E_t \given \bar{X}_{n-1} = E_{t_{n-1}},
+    \bar{X}_{n-2} = E_{t_{n-2}}, \dots,  \bar{X}_1 = E_{t_1},
+    \bar{X}_0 = E_i} = \probsub{\xi}{X_0} \in E_i \given X_{n-1} \in E_{t_{n-1}},
+    X_{n-2} \in E_{t_{n-2}}, \dots,  X_1 \in E_{t_1},
     X_0 \in E_i}.
 \]
 Call this new chain \( \bar{X}_n \), a \defn{lumped
@@ -164,10 +164,10 @@ general. [Need example]
 \begin{definition}
   A Markov chain with $X_n$ state space with state space $\mathcal{X}$
   is said to be \defn{lumpable}\index{lumpable} with respect to a partition $S$ of
-  $\mathcal{X}$ if for every starting distribution \( X_0 \) the lumped chain \(
+  $\mathcal{X}$ if for every starting distribution \( \xi \) the lumped chain \(
   \bar{X}_n \) is a Markov chain with state space $S$ and the
   associated transition probabilities do not depend on the choice of
-  $X_0$.  
+  $\xi$.  
 \end{definition}
 
 The following theorem gives a necessary and sufficient for a Markov
@@ -179,11 +179,52 @@ of the Markov chain $X_n$ from state $x_i$ to state $x_j$, for \( i, j
 = 1, \dots,  r\) , by \( p_{ij} \).  A 
 necessary and sufficient condition for the Markov chain $X$ to be lumpable
 with respect to the partition $S$ is that for every pair of sets
-$E_{\xi}$ and $E_{\eta}$, \( sum_{x_k \in E_{\eta}} p_{ik} \) has the
-same value for every \(x_i \in E_{\xi} \). These common values form
-the transition probabilities $p_{\xi, \eta}$ for the lumped chain.
+$E_i$ and $E_j$, \( sum_{x_k \in E_j} p_{ik} \) has the
+same value for every \(x_i \in E_j \). These common values form
+the transition probabilities $\hat{p}_{ij}$ for the lumped chain.
 \end{theorem}
 
+\begin{proof}
+  \begin{enumerate}
+  \item Necessity:
+    \begin{enumerate}
+    \item 
+  For the chain to be lumpable, it is necessary that
+\[
+  \prob{\bar{X}_1 = E_j \given \bar{X}_0 = E_i} = \probsub{\xi}{X_0
+  \in E_i }
+\]
+be the same for every $\xi$ for which it is defined.    Call this
+common value $\hat{p}_{ij}$.
+\item   In particular this must be the same for
+$\xi$ having a $1$ in its $k$th component for state $x_k \in E_i$.
+Hence $p_{kE_j} = \prob{x_i \in A_j} = \hat{p}_{ij}$.  
+\item Thus the
+condition given is necessary.
+\end{enumerate}
+\item Sufficiency:
+  \begin{enumerate}
+  \item The proof must show that if the condition is satisfied, the
+    probability 
+\[
+  \prob{\bar{X}_n = E_t \given \bar{X}_{n-1} = E_{t_{n-1}},
+    \bar{X}_{n-2} = E_{t_{n-2}}, \dots,  \bar{X}_1 = E_{t_1},
+    \bar{X}_0 = E_i} = \probsub{\xi}{X_0} \in E_i \given X_{n-1} \in E_{t_{n-1}},
+    X_{n-2} \in E_{t_{n-2}}, \dots,  X_1 \in E_{t_1},
+    X_0 \in E_i}.
+\]
+depends only on $E_t$ and $E_{t_{n-1}}$.
+\item This conditional probability may be written in the form \(
+  \probsub{\xi'}{x_1 \in E_t} \) where $\xi'$ is a vector with
+  non-zero components only in the sates of $E_{t_{n-1}}$. 
+\item This probability depends on $\xi$ and on the first $n$ outcomes.
+\item However, if \( \probsub{k}{x_1 \in E_t} = \hat{p}_{t, t_{n_1}}
+  \) for all $x_k \in E_t$, then it is clear that $\probsub{\xi'}{x_1
+    \in E_t} = \hat{p}_{st}$.
+\item Thus the probability depends only on $E_s$ and $E_t$. 
+\end{enumerate}
+  \end{enumerate}
+\end{proof}
 
 A matrix formulation of this theorem is useful.
 Introduce some notations.
