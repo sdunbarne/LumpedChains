@@ -310,10 +310,224 @@ $X_n$, then $X_n$ is lumpable with respect to the partition $\mathcal{S}$, if an
 \( VUPV = PV \).
 \end{theorem}
 
-%% https://wp.kntu.ac.ir/hadizadeh/pdf/latex/lesson_12%5B1%5D.pdf
-%% for making partition matrix
+\begin{proof}
+  \begin{enumerate}
+  \item $\Rightarrow$
+    \begin{enumerate}
+    \item The matrix $VU$ has the block matrix form
+      \[
+        VU =
+        \begin{pmatrix}
+          W_1 & 0 & 0 \\
+          0   & W_2 & 0 \\
+          0   & 0   & W_3
+        \end{pmatrix}
+      \]
+      where $W_1$, $W_2$, and $W_3$ are probability matrices.
+    \item The hypothesis that \( VUPV = PV \) means that the columns
+      of $PV$ are fixed vectors of $VU$.
+    \item Since the chain is lumpable, the probability of moving from a
+      state of $E_i$ to the set $E_j$ is the same for all states of
+      $A_i$, hence the components of a column of $PV$ corresponding to
+      $A_j$ are all the same.
+    \item Therefore they form a fixed vector for $W_j$, this proves
+      \(VUPV = PV \).
+    \end{enumerate}
+  \item $\Leftarrow$
+    \begin{enumerate}
+    \item Assume \(VUPV = PV \).  Then the columns of $PV$ are fixed
+      vectors for $VU$.  But each $W_j$ is the transition change of an
+      ergodic chain, so its only fixed column vectors are of the form
+      $c \mathbf{1}$.  Hence all the components of a column of $PV$ must be
+      the same.  That is, the chain is lumpable.
+    \end{enumerate}
+  \end{enumerate}
+\end{proof}
 
-\subsection*{}
+\begin{corollary}
+  \[
+    \hat{P}^n = U P^n V
+  \]
+\end{corollary}
+
+\begin{proof}
+  From the theorem,
+  \[
+    \hat{P}^2 = U P V U P V = U P^2 V
+  \]
+  and the corollary follows by induction.
+\end{proof}
+
+
+\subsection*{Lumping Absorbing Chains}
+
+Assume  now  that  $P$  is  an  absorbing  chain.   Restrict  Our 
+attention  to  the  case  of  lumping  only  states  of the  same  kind. 
+That is,  any subset of our partition will  contain only absorbing states 
+or  only  non-absorbing  states.     Recall  that the  standard form  for 
+an absorbing chain is
+\[
+  P =
+  \begin{pmatrix}
+    I & 0 \\
+    R & Q
+  \end{pmatrix}
+\]
+and write $U$ in the form
+\[
+  U =
+  \begin{pmatrix}
+    U_1 & 0 \\
+    0  & U_{2}
+  \end{pmatrix}
+\]
+where entries of $U_1$ refer to absorbing states and entries of $U_2$
+to non-absorbing states.  Similarly write $V$ in the form
+\[
+  V 
+  \begin{pmatrix}
+    V_1 & 0 \\
+    0  & V_{2}
+  \end{pmatrix}.
+\]
+In terms of this decomposition, the matrix condition for lumpability
+becomes
+\begin{align*}
+  V_1 U_1 V_1 &= V_1 \\
+  V_2 U_2 R V_1 &= R V_1 \\
+  V_2 U_2 Q V_2 &= Q V_2
+\end{align*}
+Since $U_1 V_1 = I$, the first condition is automatically satisfied.
+The standard form for the transition matrix $\hat{P}$ is
+\[
+  \hat{P} = UPV =   \begin{pmatrix}
+    U_1 & 0 \\
+    0  & U_{2}
+  \end{pmatrix}
+  \begin{pmatrix}
+    I & 0 \\
+    R & Q
+  \end{pmatrix}
+  \begin{pmatrix}
+    V_1 & 0 \\
+    0  & V_{2}
+  \end{pmatrix}.
+=   \begin{pmatrix}
+    V_1 & 0 \\
+    0  & V_{2}
+  \end{pmatrix}
+  \begin{pmatrix}
+    I & 0 \\
+    U_2 R V_1 & U_2 Q V_2
+  \end{pmatrix}.
+\]
+Then
+\begin{align*}
+  \hat{R} &= U_2 R V_1 \\
+  \hat{Q} &= U_2 Q V_2
+\end{align*}
+From $V_2 U_2 Q V_2 = Q V_2$, obtain $\hat{Q}^2 =  U_2 Q V_2 U_2 Q V_2
+&= U_2 Q^2 V_2$.
+
+From the infinite series representation for the fundamental matrix $N$
+we have
+\begin{align*}
+  \hat{N} &= I + \hat{Q} + \hat{Q}^2 + \cdots \\
+          &= U_2 I V_2+ U_2 Q V_2 + U_2 Q^2 V_2 + \cdots \\
+          &= U_2 (I +  Q  +  Q^2 + \cdots) \\
+          &= U_2 N V_2.
+\end{align*}
+From this \( \hat{\tau} = U_2 N V_2 \mathbf{1} = U_2 N  \mathbf{1} =
+U_2 \tau\)and
+\begin{align*}
+  \hat{B} = \hat{N} \hat{R} &= U_2 N V_2 U_2 R V_1 \\
+                            &= U_2 N R V_1 \\
+                            &= U_2 B V_1.
+\end{align*}
+So the important absorption quantities are all easily obtained for the
+lumped chain from the original chain.
+
+A consequence of $\hat{\tau} = U_2 \tau$ is the following.
+Let $E_j$ be any non-absorbing set, and let $x_i$ be a state in
+$E_i$.  CHoose the $i$th row of $U_2$ be a probability vecotr with $1$
+in the $x_k$ component.  This means that $t_i = t_\ell$ for all $x_\ell$ in
+$E_j$.  When a chain is lumpable, the mean time to absorption must be
+the same for all starting states in the same set $E_j$
+
+\subsection*{Lumping Ergodic Chains}
+
+Assume the ergodic chain $X$ is lumpable for some partition $S$.  The
+resutling chain will be also be ergodic.  Let $\hat{A}$ be th limiting
+matrix for the lumped chain.  Then
+\begin{align*}
+  \hat{A} &= \lim_{\nu \to \infty} \frac{\hat{P} + \hat{P}^2 + \cdots +
+            \hat{P}^{\nu}}{\nu} \\
+  &= \lim_{\nu \to \infty} \frac{UPV + UP^2V + \cdots +
+    UP^{\nu}V}{\nu} \\
+  & = UAV.
+\end{align*}
+This states that the components of $\hat{\alpha}$ are obtained from
+$\alpha$ by simply adding the components of a given set.  From the
+infinite series represnetation for the fundamental matrix $\hat{Z}$
+\[
+  \hat{Z} = U Z V/
+\]
+In general, there is no simple relation between $M$ and $\hat{M}$.
+However, the mean time to go from state $x_i$ in $E_j$ to $E_{\ell}$
+in the original process is the same for all states in $E_i$.  
+\subsection*{Examples}
+
+\begin{example}
+    Consider a random walk%
+    \index{random walk}
+    of a particle which moves along a straight line in unit steps.  Each
+    step is \( 1 \) unit to the right with probability \( \frac{1}{2} \) and to
+    the left with probability \( \frac{1}{2} \).  It moves until it reaches
+    one of two extreme points which are \defn{absorbing boundaries}.~%
+    \index{absorption probability matrix}
+    Assume that if the process reaches the boundary points, it remains
+    there from that time on.  Figure~%
+    \ref{fig:waitingtimeabsorbtion:randomwalkphasespace} has \( 9 \)
+    states numbered from \( -4 \) to \( 4 \).  The absorbing boundary
+    states are \( -4 \) and \( 4 \).
+
+    In the small case the state space has $5$ values with absorbing
+    boundary states $x_1$ and $x_5$ and using the ordering for the
+    standard form the transition matrix is
+    \[
+      P =
+      \bordermatrix{
+       & s_1 & s_5 & s_2 & s_3 & s4 \cr
+      s_1 1 & 0 & 0 & 0 & 0 \cr
+      s_5 0 & 1 & 0 & 0 & 0 \cr
+      s_2 1/2 & 0 & 0 1/2 & 0 \cr
+      s_3 0 & 0 1/2 & 0 & 1/2 \cr
+      s_4 ) & 0 & 0 1/2 & 0 \cr
+    }
+  \]
+  Take the partition $S = \set{ \set{s_1, s_5}, \set{s_2, s_4},
+    \set{s_3}}$.  For  this  partition 
+the condition for lumpabiIity is  satisfied, Notice  that this would not 
+have  been the case  if we  have  unequal probabilities for  moving
+to left or right.
+
+It is easy to verify that
+\begin{align*}
+   \hat{P} &=
+   \begin{pmatrix}
+     1 & 0 & 0 \\
+     1/2 & 0 & 1/2 \\
+     0  & 1  & 0
+   \end{pmatrix} \\
+  \hat{N} &=
+  \begin{pmatrix}
+    2 & 1 \\
+    2 & 2
+  \end{pmatrix} \\
+  \hat{\tau} &= (3, 4)^T \\
+  \hat{B} &= (1,1)^T.
+\end{align*}
+ 
 
 \visual{Section Starter Question}{../../../../CommonInformation/Lessons/question_mark.png}
 \section*{Section Ending Answer}
