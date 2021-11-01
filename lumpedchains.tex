@@ -29,7 +29,7 @@
 \visual{Rating}{../../../../CommonInformation/Lessons/rating.png}
 \section*{Rating} %one of 
 % Everyone: contains no mathematics.
-% Student: contains scenes of mild algebra or calculus that may require guidance.
+Student: contains scenes of mild algebra or calculus that may require guidance.
 % Mathematically Mature: may contain mathematics beyond calculus with proofs.
 % Mathematicians Only: prolonged scenes of intense rigor.
 
@@ -107,19 +107,19 @@ Markov chain \( X_n \).
 It is often convenient to partition the states of a chain into
 aggregates or lumps and to view the dynamics at a coarser level as the
 system of interest moves among the lumps. Examples of such aggregation
-include a weather model lumping the states ``drizzle'', ``rain'' and
-``snow'' into one state called ``precipitation'' or a physical model
-aggregating the microstates of a physical system into so-called coarse
-grained ‘‘mesostates’’ each representing many microstates. Although
-the dynamics moving between the lumps is not even Markovian in general
-[10], there is a natural choice for a Markov chain model on the set of
-lumped states. This choice [10—13] matches the time evolution of the
-original unlumped chain started at equilibrium. In the present work we
-bound the error of the dynamics predicted by this lumped chain
+include a weather model lumping the states ``rain'' and ``snow'' into
+one state called ``bad weatehr'' or a physical model aggregating the
+microstates of a physical system into so-called coarse grained
+``mesostates'' each representing many microstates. Although the
+dynamics moving between the lumps is not necessarily Markovian in
+general, there is a natural choice for a Markov chain model on the set
+of lumped states. This choice matches the time evolution of
+the original unlumped chain started at equilibrium. In the present
+work we bound the error of the dynamics predicted by this lumped chain
 considered as a model of the unlumped chain. Our goal in this letter
 is to analyze the accuracy of such coarse grained models as compared
-to the exact microscopic behavior, i.e. to bound the error in a
-coarse grained description.
+to the exact microscopic behavior, i.e. to bound the error in a coarse
+grained description.
 
 \subsection*{Lumpable Markov Chains}
 
@@ -257,13 +257,57 @@ Introduce some notations.
 Associated with a partition \( \mathbf{S} = \set{E_1,  E_2, \dots,
   E_v} \) of the finite state space
 \( \mathcal{X} = \set{x_1, x_2, \dots,  x_k}\), of the underlying Markov chain $X_n$, introduce
-two useful matrices. Let $U$ be the $v \times k$ matrix whose $i$th
+two useful matrices. The \defn{distributing matrix}\index{distributing
+  matrix} $U$ is the $v \times k$ matrix with entries
+\[
+  U_{ij} =
+  \begin{cases}
+    \pi_j/\sum_{k \in E_j} \pi_k & x_k \in E_j \\
+    0                            & \text{otherwise}.
+  \end{cases}
+\]
+That is, the rows of the distributing matrix are the stationary
+distribution restricted to $E_j$ and renormalized so its entries add
+to $1$.  Note that for any probability distribution $q$ in the lumped
+space, the image $qU$ is locally equilibrated, i.e.\ $qU$ restricted
+to any element $E_j$ of the partition equals the stationary
+distribution restricted to $E_j$ and renormalized to add to $q_j$.  In
+particular, with $\hat{\pi} = \pi V$
+\[
+  U_{ij} = V_{ji} \frac{\pi_j}{\hat{\pi}_{i}}, i = 1, \dots, k, j = 1,
+  \dots, v.
+\]
+whose $i$th
 row, \( \i =
 1, 2, \dots, v \), is the probability vector having equal values for states
-in $E_{\xi}$ and $0$ elsewhere. Let $V$ be the $r \times v$ matrix with the $j$th column,
+in $E_{\xi}$ and $0$ elsewhere.
+
+Note that the rows of $PV$ corresponding to the elements in the same
+set of the partition are the same.  This will be true in general for a
+chain satisfying the condition for lumpability.  The matrix $U$ simply
+removes this duplication of rows.  The choice of $U$ is not unique,
+all that is needed is that the $i$th row should be a probability
+vector with non-zero components only for states in $E_i$.  Sometimes
+for simplicity and convenience, choose the vector with equal components.
+
+Let the \defn{collecting
+  matrix}\index{collecting matrix} $V$ be the $k \times v$ matrix with the $j$th column,
 \( j = 1, 2, \dots, v \), is a vector with $1$s in the components corresponding to
-states in $E_j$, and $0$ elsewhere.  Then $UV = I$ and the lumped
+states in $E_j$, and $0$ elsewhere.  The collecting matrix specifies
+the lumped probability distribution $\hat{p} = p V$ on the partition
+$E$.   Then $UV = I$ since $V$ simply collects back exactly what $U$
+distributes.   The lumped
 transition matrix is \( \hat{P} = UPV \).
+
+Next consider the local equilibration operator $VU$.  The name is
+justified by considering its action.  Starting from any distributon
+$p$ on $\mathcal{X}$, $VU$ collects the probability in each $E_j$,
+then redistributes this much probability $pV$ among the lumped states
+in the partition member $E_j$ as $(pC)_j \hat{\pi} \hat{\pi}_i^j$.  In
+particular,
+\[
+  \pi = \pi VU. 
+\]
 
 \begin{example}
   In the previous lumped land of Oz weather example
@@ -290,13 +334,6 @@ transition matrix is \( \hat{P} = UPV \).
    \]
 \end{example}
 
-Note that the rows of $PV$ corresponding to the elements in the same
-set of the partition are the same.  This will be true in general for a
-chain satisfying the condition for lumpability.  The matrix $U$ simply
-removes this duplication of rows.  The choice of $U$ is not unique,
-all that is needed is that the $i$th row should be a probability
-vecotr with non-zero components only for states in $E_i$.  FOr
-convenience, choose the vector with equal components.
 
 It is convenient to assume that the state are ordered so that those
 in $E_1$ come first, those in $E_{2}$ come next and so on with those
@@ -528,6 +565,87 @@ It is easy to verify that
   \hat{B} &= (1,1)^T.
 \end{align*}
  
+\subsection*{Covariance}
+
+It is possible to compute the covariance matrix of the lumped process.
+The covariances are easily obtainable from \( C \) even if the
+original process is not lumpable with respect to the partition, that
+is, the lumped process is not a Markov chain.  In any case,
+\[
+  \hat{C} = \sum{s_k \in A_i, s_{\ell} \in A_j } c_{kl}.
+\]
+
+\begin{example}
+  For the weather in the Land of Oz example.
+  \begin{align*}
+   \hat{A} &=
+    \begin{pmatrix}
+      0 & 1 & 0 \\
+      1/2 & 0 & 1/2
+    \end{pmatrix}
+    \begin{pmatrix}
+      2/5 & 1/5 & 2/5 \\
+      2/5 & 1/5 & 2/5 \\
+      2/5 & 1/5 & 2/5 \\
+    \end{pmatrix}
+    \begin{pmatrix}
+      0 & 1 \\
+      1 & 0 \\
+      0 & 1
+    \end{pmatrix} \\
+    & =
+    \begin{pmatrix}
+      1/5 & 4/5 \\
+      1/5 & 4/5
+    \end{pmatrix} \\
+   Z =      \begin{pmatrix}
+      0 & 1 & 0 \\
+      1/2 & 0 & 1/2
+    \end{pmatrix}
+    \begin{pmatrix}
+      86/75 & 13/75 & -14/75 \\
+       6/75 & 63/75 &   6/75 \\
+     -14/75  & 3/75 &  86/75 \\
+    \end{pmatrix}
+    \begin{pmatrix}
+      0 & 1 \\
+      1 & 0 \\
+      0 & 1
+    \end{pmatrix} \\
+    & =
+    \begin{pmatrix}
+      63/75 & 12/75 \\
+       3/75 & 72/75
+    \end{pmatrix} \\
+    \hat{C} =
+    \begin{pmatrix}
+      12/125  & -12/125 \\
+    -12/125   &  12/125
+  \end{pmatrix} \\
+    M &= \bordermatrix{
+        & R & N & S \cr
+    R & 5/2 & 4 & 10/3 \cr
+    8/3 & 5 & 8/3 \cr
+    10/3 & 4 & 5/2          
+               }
+  \end{align*}
+  From the fundamental matrix \( \hat{Z} \) find that
+  \[
+    \hat{M} = \bordermatrix{
+      & N & B \cr
+      N & 5 & 1 \cr
+      B & 4 & 5/4
+    }
+  \]
+Note that the mean time to reach \( N \) from either \( R \) or \( S
+\) is \( 4 \).  Recall that \( N \) in the lumped process is a single
+element set.  This common value is the mean time in the lumped chain
+to go from $B$ to $N$.  Similarly, the value \( 5 \) is obtainable
+from \( M \).  The mean time to go from $N$ to $B$ is less than the
+mean time to go from $N$ to either of the states $B$ in the original
+process.
+
+\end{example}
 
 \visual{Section Starter Question}{../../../../CommonInformation/Lessons/question_mark.png}
 \section*{Section Ending Answer}
