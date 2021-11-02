@@ -644,8 +644,66 @@ to go from $B$ to $N$.  Similarly, the value \( 5 \) is obtainable
 from \( M \).  The mean time to go from $N$ to $B$ is less than the
 mean time to go from $N$ to either of the states $B$ in the original
 process.
-
 \end{example}
+
+\subsection*{Bounding Lumping Errors}
+
+Starting from a distribution $x_0$ on $\mathcal{X}$, the time
+evolution among the lumped states $E_j$ is $\hat{x}_{t} = x_0 P^t V$,
+while the time evolution of the lumped Markov chain is $y_t = x_0U
+\hat{P}^t$.  The question si how different these two dynamics can be.
+
+Define the norm $\| \cdot \|_{\pi}$ by
+\[
+  \| v\|_{\pi} = \| v D_{\pi} \|_2 = \sqrt{\sum_{\nu}
+    v_{\nu}^{2/\pi_\nu}}
+\]
+where $D_{\pi} = \operatorname{diag}(1/\sqrt{\pi_1}, \dots,
+1/\sqrt{\pi_k}$ and $\| \cdot \|_2$ is the standard Euclidean
+$2$-norm.  The corresponding operator norm is
+\begin{multline*}
+  \| A \|_{\pi} = \max_{\|x\|_{\pi}=1}\|xA\|_{\pi} =
+  \max_{\|xD_{\pi}\|_2 = 1}\|x D_{\pi} D_{\pi}^{-1} A D_{\pi}\|_{2} = \\
+  \max_{\|w\|_2 = 1}\|w D_{\pi}^{-1} A D_{\pi}\|_{2} =
+  \| D_{\pi}^{-1} A D_{\pi}\|_{2}
+\end{multline*}
+
+The one step time difference is
+\[
+  \| x_0 V \hat{P} - x_0 G V \|_{\pi} = \| x_0 V U P V - x_0 P V
+  \|_{\pi} = \| x_0 (VUP - P) V \|_{\pi}.
+\]
+The $n$ step time difference is
+\begin{multline*}
+  \| x_0 V \hat{P}^n - x_0 G^n V \|_{\pi} = \| x_0 V (U P V)^n - x_0 P^n V
+  \|_{\pi} \\
+  = \| x_0 VUPVUP \cdots PVUPPV  - x_0 P^n V \|_{\pi} = \| x_0
+  (VUP)^nV - x_0 P^n V \|_{\pi} = \| x_0 ((VUP)^n - P^n) V \|_{\pi}.
+\end{multline*}
+This shows that the important operator for bounding the difference is $VUP$.
+For convenience, let $VUP = H$.
+
+The goal is to bound the $n$-step difference $\| H^n - P^n \|_{\pi}$ in
+terms of the $1$-step difference $\| H - P\|_{\pi}$.  The general
+behavior of the difference  is that it can grow for a while, but must
+eventually decline to $0$ since by construction the lumped and
+unlumped chain converge to the same equilibrium distribution.
+Bounding how large the difference can get in terms of the $1$-step
+difference is the next theorem.
+
+\begin{theorem}
+  Let $ \delta = \| VUP = P \|_{\pi}$.  Then
+  \[
+    \| (VUP)^n - P^n \|_{\pi} < K(n) < \hat{K} \delta
+  \]
+  with $K(n) = n \abs{\lambda_2}^{n-1}$, where $\lambda_2$ is the
+  second largest eigenvalue of $P$ and $\hat{K} = -1/(\lambda_2
+  \EulerE \log(\lambda_2)$.
+\end{theorem}
+
+\begin{proof}
+  
+\end{proof}
 
 \visual{Section Starter Question}{../../../../CommonInformation/Lessons/question_mark.png}
 \section*{Section Ending Answer}
