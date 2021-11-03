@@ -651,7 +651,7 @@ process.
 Starting from a distribution $x_0$ on $\mathcal{X}$, the time
 evolution among the lumped states $E_j$ is $\hat{x}_{t} = x_0 P^t V$,
 while the time evolution of the lumped Markov chain is $y_t = x_0U
-\hat{P}^t$.  The question si how different these two dynamics can be.
+\hat{P}^t$.  The question is how different these two dynamics can be.
 
 Define the norm $\| \cdot \|_{\pi}$ by
 \[
@@ -692,7 +692,7 @@ Bounding how large the difference can get in terms of the $1$-step
 difference is the next theorem.
 
 \begin{theorem}
-  Let $ \delta = \| VUP = P \|_{\pi}$.  Then
+  Let $ \delta = \| VUP - P \|_{\pi}$.  Then
   \[
     \| (VUP)^n - P^n \|_{\pi} < K(n) < \hat{K} \delta
   \]
@@ -702,7 +702,94 @@ difference is the next theorem.
 \end{theorem}
 
 \begin{proof}
-  
+  \begin{enumerate}
+  \item First note that
+    \[
+      \| H^n - P^n \|_{\pi} = \|(H-P)H^{n-1}+P(H^{n-1} -P^{n-1}\|_{\pi}.
+    \]
+  \item Iterating,
+    \begin{a;ign*}
+      \| H^n - P^n \|_{\pi} &= \| \sum_{\nu=0}^{n-1}
+      P^k(H-P)H^{n-k-1}\|_{\pi} \\
+      & \le \sum_{\nu=0}^{n-1} \|  P^k(H-P)H^{n-k-1}\|_{\pi}
+    \end{align*}
+  \item Recall that $H$ and $P$ have common stationary distribution
+    $\pi$.  Define the projection $P_{\pi} = \mathbf{1}^T \pi$.  The
+    complementary projection is $P_{\sigma} = I - P_{\pi}$.
+    $P_{\sigma}$ projects any vector onto the subspace $\Sigma =
+    \setof{v}{v \mathbf{1}^T}$.  $\Sigma$ is invariant under the
+    action of any stochastic matrix.
+  \item The decomposition into the subspaces gives the representation
+    of $P$ and $H$:
+    \begin{align*}
+      P &= (P_{\pi} + P_{\sigma}) P = P_{\pi} + P_{\sigma}P \\
+      H &= (P_{\pi} + P_{\sigma}) H = P_{\pi} + P_{\sigma}H. \\
+    \end{align*}
+  \item Then $H - P = P_{\sigma}H - P_{\sigma}P$ and $0 = P_{\pi}
+    P_{\sigma} P = P_{\sigma} P P_{\pi} = P_{\pi}
+    P_{\sigma} H = P_{\sigma} H P_{\pi}$.
+  \item Recall $ \delta = \| VUP - P \|_{\pi}$ and $VUP = H$, so $\|
+    VUP - P \|_{\pi} = \| H - P \|_{\pi} = \|P_{\sigma}H -
+    P_{\sigma}P\|_{\pi}\|_{\pi} = \delta$.
+  \item For integers $k$, $n$
+    \begin{align*}
+      & \| P^k(H-P)H^{n-k-1} \|_{\pi} \\
+      & \qquad = \|(P_{\pi}+P_{\sigma}P)^k(P_{\sigma}H-P_{\sigma}P)
+        (P_{\pi}+P_{\sigma}H)^{n-1-K}\|_{\pi} \\
+      & \qquad = \|P_{\sigma}P)^k(P_{\sigma}H-P_{\sigma}P)
+        (P_{\sigma}H)^{n-1-K}\|_{\pi} \\
+      & \qquad = \| P_{\sigma} P \|_{\pi}^k \delta \|P_{\sigma}H\|_{\pi}^{n-k-1}.
+    \end{align*}
+  \item Now make use of the special choice of norm, in particular, use
+    the fact that for a matrix \( \| A \|_{\pi} = \| D_{\pi}^{-1} A
+    D_{\pi} \|_{2} \).  By the assumption of reversibility,  $D_{\pi}^{-1} P
+    D_{\pi}$ is a symmetric matrix.  Therefore, the $2$-norm is the
+    dominant eigenvalue of the matrix.  In fact, as shown below the
+    diagonal matrix $U_{\pi}$ also symmetrizes $P_{\pi}$, $P_{\pi}P$,
+    $P_{\sigma}P$, and $VU$.  Thus each has norm equaling the dominant
+    eigenvalue.
+  \item Direct calculation shows $\pi U_{\pi} = \mathbf{1}
+    U_{\pi}^{-1}$. Thus, $D_{\pi}^{-1} P_{\pi} D_{\pi} = D_{\pi}^{-1}
+    \mathbf{1}^{T} \pi D_{\pi} = (\mathbf{1} D_{\pi}^{-1})^T(\pi
+    D_{\pi}) = (\pi D_{\pi})^T(\pi D_{\pi}) = ( (\pi D_{\pi})^T(\pi
+    D_{\pi}))^T = (D_{\pi}^{-1} P_{\pi} D_{\pi})^T$.  This shows
+    $P_{\pi}$ is symmetrized by $D_{\pi}}$.
+\item So $D_{\pi}^{-1} P D_{\pi}$ and $D_{\pi}^{-1} P_{\pi} D_{\pi}$
+  are symmetric and commute with each other since $P$ and $P_{\pi}$
+  commute.  Thus, $D_{\pi}^{-1} P_{\pi} P D_{\pi} = D_{\pi}^{-1}
+  P_{\pi} D_{\pi} D_{\pi}^{-1} P D_{\pi}$ is symmetric.
+\item Then $D_{\pi}^{-1} P_{\sigma} P D_{\pi} = D_{\pi}^{-1}
+  (I-P_{\pi}) P D_{\pi}$ is symmetric as well.
+\item From $U_{ij} = V_{ji} \frac{\pi_j}{\hat{\pi}_{i}}$, it follows
+  that $D = D_{\hat{\pi}}^2 V^T D_{\pi}^2$ or equivalently
+  $D_{\hat{\pi}}^{-1} U D_{\pi} = D_{\hat{\pi}} V^T D_{\pi}$.
+\item Thus,
+  \begin{align*}
+    D_{\pi}^{-1} VU D_{\pi} &= (D_{\pi}^{-1} V
+                              D_{\hat{\pi}})(D_{\hat{\pi}}^{-1} U
+                              D_{\pi}) \\
+    &= (D_{\pi}^{-1} V D_{\hat{\pi}})(D_{\hat{\pi}}^{-1} V^T D_{\pi}^{-1}) \\
+    &= (D_{\pi}^{-1} V D_{\hat{\pi}})(D_{\pi}^{-1} V D_{\hat{\pi}}).
+  \end{align*}
+  As the product of a matrix and it transpose, $VU$ is symmetrized by
+  $D_{\pi}$.
+\item Since $D_{\pi}^{-1} P_{\sigma} P D_{\pi}$ is symmetric and based
+  on the definition of the matrix norm $\| P_{\sigma} P \|_{\pi} =
+  \abs{\lambda_2}$ where $\lambda_2$ is the second-largest eigenvalue
+  of $P$.  To bound $\| P_{\sigma} H$
+  \begin{multline*}
+    \| P_{\sigma} H \|_{\pi} = \| VUP - P_{\sigma} \|_{\pi} = \| VUP -
+    VUP_{\sigma}\|_{\pi} \\
+    = \| VU(P - P_{\sigma}\|_{\pi} \le \|P_{\sigma} P\|_{\pi}
+    \|VU\|_{\pi} = \abs{\lambda_2} \|VU\|_{\pi}.
+  \end{multline*}
+\item Since $VU$ is a stochastic matrix and$D_{\pi}$ symmetrizes $VU$,
+  it follows that $\| VU \|_{\pi} = 1$.
+\item Thus the bound becomes $\| H^n - P^n\|_{\pi} \le n
+  \abs{\lambda_2}^{n-1} \delta = K(n) \delta$ where $K(n) = n \abs{\lambda_2}^{n-1}$.
+\item Maximizing $K(n)$ over $n$ gives $K(n) \le \hat{K} =
+  \frac{-1}{\lambda_2 \EulerE \log(\lambda_2}$.
+  \end{enumerate}
 \end{proof}
 
 \visual{Section Starter Question}{../../../../CommonInformation/Lessons/question_mark.png}
