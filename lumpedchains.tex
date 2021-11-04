@@ -1,15 +1,19 @@
+%%% -*-LaTeX-*-
+%%% lumpedchains.tex.orig
+%%% Prettyprinted by texpretty lex version 0.02 [21-May-2001]
+%%% on Thu Nov  4 08:43:49 2021
+%%% for Steven R. Dunbar (sdunbar@family-desktop)
+
 \documentclass[12pt]{article}
 
-\input{../../../../etc/macros}
-%\input{../../../../etc/mzlatex_macros}
+\input{../../../../etc/macros} %\input{../../../../etc/mzlatex_macros}
 \input{../../../../etc/pdf_macros}
 
 \bibliographystyle{plain}
 
 \begin{document}
 
-\myheader
-\mytitle
+\myheader \mytitle
 
 \hr
 
@@ -27,11 +31,11 @@
 % \hr
 
 \visual{Rating}{../../../../CommonInformation/Lessons/rating.png}
-\section*{Rating} %one of 
+\section*{Rating} %one of
 % Everyone: contains no mathematics.
 % Student: contains scenes of mild algebra or calculus that may require guidance.
-Mathematically Mature: may contain mathematics beyond calculus with proofs.
-% Mathematicians Only: prolonged scenes of intense rigor.
+Mathematically Mature:  may contain mathematics beyond calculus with
+proofs. % Mathematicians Only: prolonged scenes of intense rigor.
 
 \hr
 
@@ -44,24 +48,27 @@ Mathematically Mature: may contain mathematics beyond calculus with proofs.
 \section*{Key Concepts}
 
 \begin{enumerate}
-  \item Denote the transition probability
-of the Markov chain $X_n$ from state $x_i$ to state $x_j$, for \( i, j
-= 1, \dots,  r\), by \( p_{ij} \).  A 
-necessary and sufficient condition for the Markov chain $X$ to be lumpable
-with respect to the partition $S$ is that for every pair of sets
-$E_{\xi}$ and $E_{\eta}$, \( sum_{x_k \in E_{\eta}} p_{ik} \) has the
-same value for every \(x_i \in E_{\xi} \). These common values form
-the transition probabilities $p_{\xi, \eta}$ for the lumped chain.
-  \item   if $P$ is the transition probability matrix of the Markov chain
-$X_n$, then $X_n$ is lumpable with respect to the partition $\mathcal{S}$, if and only if
-\( VUPV = PV \).
-  \item   Let $ \delta = \| VUP - P \|_{\pi}$.  Then
-  \[
-    \| (VUP)^n - P^n \|_{\pi} < K(n) < \hat{K} \delta
-  \]
-  with $K(n) = n \abs{\lambda_2}^{n-1}$, where $\lambda_2$ is the
-  second largest eigenvalue of $P$ and $\hat{K} = -1/(\lambda_2
-  \EulerE \log(\lambda_2))$.
+    \item
+        Denote the transition probability of the Markov chain \( X_n \)
+        from state \( x_i \) to state \( x_j \), for \( i, j = 1, \dots,
+        r \), by \( p_{ij} \).  A necessary and sufficient condition for
+        the Markov chain \( X \) to be lumpable with respect to the
+        partition \( S \) is that for every pair of sets \( E_{\xi} \)
+        and \( E_{\eta} \), \( sum_{x_k \in E_{\eta}} p_{ik} \) has the
+        same value for every \( x_i \in E_{\xi} \).  These common values
+        form the transition probabilities \( p_{\xi, \eta} \) for the
+        lumped chain.
+    \item
+        if \( P \) is the transition probability matrix of the Markov
+        chain \( X_n \), then \( X_n \) is lumpable with respect to the
+        partition \( \mathcal{S} \), if and only if \( VUPV = PV \).
+    \item
+        Let \( \delta = \| VUP - P \|_{\pi} \).  Then
+        \[
+            \| (VUP)^n - P^n \|_{\pi} < K(n) < \hat{K} \delta
+        \] with \( K(n) = n \abs{\lambda_2}^{n-1} \), where \( \lambda_2
+        \) is the second largest eigenvalue of \( P \) and \( \hat{K} =
+        -1/(\lambda_2 \EulerE \log(\lambda_2)) \).
 \end{enumerate}
 
 \hr
@@ -69,58 +76,64 @@ $X_n$, then $X_n$ is lumpable with respect to the partition $\mathcal{S}$, if an
 \visual{Vocabulary}{../../../../CommonInformation/Lessons/vocabulary.png}
 \section*{Vocabulary}
 \begin{enumerate}
-  \item   Let $X_n$ be a Markov chain with state space \( \mathcal{X} =
-\set{x_1 x_2, \dots x k} \) and initial distribution \( \xi \). Given a
-partition \( \bar{S} = \set{E_1, E_2,  \dots, E_v} \) of the state space
-  $S$, a new chain \( \bar{X}_n \) can be defined as
-follows: At the $j$th step, the state of the new chain is the set
-$E_k$ when $E_k$ contains the state of the $j$th step of the original
-chain. Assign the transition probabilities for $\bar{X}_n$ as follows:
-The initial distribution is
-\[
-  \prob{\bar{X}_0 = E_i} = \probsub{X_0 \in E_i}.
-\]
-Given the initial state, the transition probability for step $1$ is
-\[
-  \prob{\bar{X}_1 = E_j \given \bar{X}_0 = E_i} = \probsub{\xi}{X_0
-  \in E_i }.
-\]
-In general for the $n$th step
-\[
-  \prob{\bar{X}_1 = E_t \given \bar{X}_{n-1} = E_{s_{n-1}},
-    \bar{X}_{n-2} = E_{s_{n-2}}, \dots,  \bar{X}_1 = E_{s_1},
-    \bar{X}_0 = E_i} = \probsub{\xi}{X_0 \in E_i \given X_{n-1} \in E_{s_{n-1}},
-    X_{n-2} \in E_{s_{n-2}}, \dots,  X_1 \in E_{s_1},
-    X_0 \in E_i}.
-\]
-Call this new chain \( \bar{X}_n \), a \defn{lumped
-  chain}\index{lumped chain} of the
-Markov chain \( X_n \).
-  \item 
-  A Markov chain with $X_n$ state space with state space $\mathcal{X}$
-  is said to be \defn{lumpable}\index{lumpable} with respect to a partition $S$ of
-  $\mathcal{X}$ if for every starting distribution \( X_0 \) the lumped chain \(
-  \bar{X}_n \) is a Markov chain with state space $S$ and the
-  associated transition probabilities do not depend on the choice of
-  $X_0$.  
-\item The \defn{distributing matrix}\index{distributing
-  matrix} $U$ is the $v \times k$ matrix with entries
-\[
-  U_{ij} =
-  \begin{cases}
-    \pi_j/\sum_{k \in E_j} \pi_k & x_k \in E_j \\
-    0                            & \text{otherwise}.
-  \end{cases}
-\]
-The rows of the distributing matrix are the stationary
-distribution restricted to $E_j$ and renormalized so its entries add
-to $1$.
-\item Let the \defn{collecting
-  matrix}\index{collecting matrix} $V$ be the $k \times v$ matrix with the $j$th column,
-\( j = 1, 2, \dots, v \), is a vector with $1$s in the components corresponding to
-states in $E_j$, and $0$ elsewhere.  The collecting matrix specifies
-the lumped probability distribution $\hat{p} = p V$ on the partition
-$E$.
+    \item
+        Let \( X_n \) be a Markov chain with state space \( \mathcal{X}
+        = \set{x_1 x_2, \dots x k} \) and initial distribution \( \xi \).
+        Given a partition \( \bar{S} = \set{E_1, E_2, \dots, E_v} \) of
+        the state space \( S \), a new chain \( \bar{X}_n \) can be
+        defined as follows:  At the \( j \)th step, the state of the new
+        chain is the set \( E_k \) when \( E_k \) contains the state of
+        the \( j \)th step of the original chain.  Assign the transition
+        probabilities for \( \bar{X}_n \) as follows: The initial
+        distribution is
+        \[
+            \prob{\bar{X}_0 = E_i} = \probsub{X_0 \in E_i}.
+        \] Given the initial state, the transition probability for step \(
+        1 \) is
+        \[
+            \prob{\bar{X}_1 = E_j \given \bar{X}_0 = E_i} = \probsub{\xi}
+            {X_0 \in E_i }.
+        \] In general for the \( n \)th step
+        \[
+            \prob{\bar{X}_1 = E_t \given \bar{X}_{n-1} = E_{s_{n-1}},
+            \bar{X}_{n-2} = E_{s_{n-2}}, \dots, \bar{X}_1 = E_{s_1},
+            \bar{X}_0 = E_i} = \probsub{\xi}{X_0 \in E_i \given X_{n-1}
+            \in E_{s_{n-1}}, X_{n-2} \in E_{s_{n-2}}, \dots, X_1 \in E_{s_1},
+            X_0 \in E_i}.
+        \] Call this new chain \( \bar{X}_n \), a \defn{lumped chain}%
+        \index{lumped chain}
+        of the Markov chain \( X_n \).
+    \item
+        A Markov chain with \( X_n \) state space with state space \(
+        \mathcal{X} \) is said to be \defn{lumpable}%
+        \index{lumpable}
+        with respect to a partition \( S \) of \( \mathcal{X} \) if for
+        every starting distribution \( X_0 \) the lumped chain \( \bar{X}_n
+        \) is a Markov chain with state space \( S \) and the associated
+        transition probabilities do not depend on the choice of \( X_0 \).
+    \item
+        The \defn{distributing matrix}%
+        \index{distributing
+  matrix}
+        \( U \) is the \( v \times k \) matrix with entries
+        \[
+            U_{ij} =
+            \begin{cases}
+                \pi_j/\sum_{k \in E_j} \pi_k & x_k \in E_j \\
+                0 & \text{otherwise}.
+            \end{cases}
+        \] The rows of the distributing matrix are the stationary
+        distribution restricted to \( E_j \) and renormalized so its
+        entries add to \( 1 \).
+    \item
+        Let the \defn{collecting matrix}%
+        \index{collecting matrix}
+        \( V \) be the \( k \times v \) matrix with the \( j \)th
+        column, \( j = 1, 2, \dots, v \), is a vector with \( 1 \)s in
+        the components corresponding to states in \( E_j \), and \( 0 \)
+        elsewhere.  The collecting matrix specifies the lumped
+        probability distribution \( \hat{p} = p V \) on the partition \(
+        E \).
 \end{enumerate}
 
 \hr
@@ -130,20 +143,19 @@ $E$.
 
 It is often convenient to partition the states of a chain into
 aggregates or lumps and to view the dynamics at a coarser level as the
-system of interest moves among the lumps. Examples of such aggregation
+system of interest moves among the lumps.  Examples of such aggregation
 include a weather model lumping the states ``rain'' and ``snow'' into
 one state called ``bad weatehr'' or a physical model aggregating the
 microstates of a physical system into so-called coarse grained
-``mesostates'' each representing many microstates. Although the
-dynamics moving among the lumps is not necessarily Markovian in
-general, there is a natural choice for a Markov chain model on the set
-of lumped states. This choice matches the time evolution of
-the original unlumped chain started at equilibrium. 
-This provides bounds the error of the dynamics predicted by the lumped chain
-considered as a model of the unlumped chain. The goal in this section
-is to analyze the accuracy of such coarse grained models compared
-to the exact microscopic behavior, i.e.\ to bound the error in a coarse
-grained description.
+``mesostates'' each representing many microstates.  Although the
+dynamics moving among the lumps is not necessarily Markovian in general,
+there is a natural choice for a Markov chain model on the set of lumped
+states.  This choice matches the time evolution of the original unlumped
+chain started at equilibrium. This provides bounds the error of the
+dynamics predicted by the lumped chain considered as a model of the
+unlumped chain.  The goal in this section is to analyze the accuracy of
+such coarse grained models compared to the exact microscopic behavior,
+i.e.\ to bound the error in a coarse grained description.
 
 \subsection*{Lumpable Markov Chains}
 
@@ -153,398 +165,415 @@ grained description.
 %% http://www.sci.sdsu.edu/~salamon/OLPpublished.pdf
 
 \begin{definition}
-  Let $X_n$ be a Markov chain with state space \( \mathcal{X} =
-\set{x_1 x_2, \dots x_k} \) and initial distribution \( \xi \). Given a
-partition \( \bar{S} = \set{E_1, E_2,  \dots, E_v} \) of the state space
-  $S$, a new chain \( \bar{X}_n \) can be defined as
-follows: At the $j$th step, the state of the new chain is the set
-$E_k$ when $E_k$ contains the state of the $j$th step of the original
-chain.  Assign the transition probabilities for $\bar{X}_n$ as follows:
-The initial distribution is
-\[
-  \prob{\bar{X}_0 = E_i} = \probsub{\xi}{X_0 \in E_i}.
-\]
-Given the initial state, the transition probability for step $1$ is
-\[
-  \prob{\bar{X}_1 = E_j \given \bar{X}_0 = E_i} = \probsub{\xi}{X_0
-  \in E_i }.
-\]
-In general for the $n$th step
-\[
-  \prob{\bar{X}_n = E_t \given \bar{X}_{n-1} = E_{t_{n-1}},
-    \bar{X}_{n-2} = E_{t_{n-2}}, \dots,  \bar{X}_1 = E_{t_1},
-    \bar{X}_0 = E_i} = \probsub{\xi}{X_0 \in E_i \given X_{n-1} \in E_{t_{n-1}},
-    X_{n-2} \in E_{t_{n-2}}, \dots,  X_1 \in E_{t_1},
-    X_0 \in E_i}.
-\]
-Call this new chain \( \bar{X}_n \), a \defn{lumped
-  chain}\index{lumped chain} of the
-Markov chain \( X_n \).
+    Let \( X_n \) be a Markov chain with state space \( \mathcal{X} =
+    \set{x_1 x_2, \dots x_k} \) and initial distribution \( \xi \).
+    Given a partition \( \bar{S} = \set{E_1, E_2, \dots, E_v} \) of the
+    state space \( S \), a new chain \( \bar{X}_n \) can be defined as
+    follows:  At the \( j \)th step, the state of the new chain is the
+    set \( E_k \) when \( E_k \) contains the state of the \( j \)th
+    step of the original chain.  Assign the transition probabilities for
+    \( \bar{X}_n \) as follows: The initial distribution is
+    \[
+        \prob{\bar{X}_0 = E_i} = \probsub{\xi}{X_0 \in E_i}.
+    \] Given the initial state, the transition probability for step \( 1
+    \) is
+    \[
+        \prob{\bar{X}_1 = E_j \given \bar{X}_0 = E_i} = \probsub{\xi}{X_0
+        \in E_i }.
+    \] In general for the \( n \)th step
+    \[
+        \prob{\bar{X}_n = E_t \given \bar{X}_{n-1} = E_{t_{n-1}}, \bar{X}_
+        {n-2} = E_{t_{n-2}}, \dots, \bar{X}_1 = E_{t_1}, \bar{X}_0 = E_i}
+        = \probsub{\xi}{X_0 \in E_i \given X_{n-1} \in E_{t_{n-1}}, X_{n-2}
+        \in E_{t_{n-2}}, \dots, X_1 \in E_{t_1}, X_0 \in E_i}.
+    \] Call this new chain \( \bar{X}_n \), a \defn{lumped chain}%
+    \index{lumped chain}
+    of the Markov chain \( X_n \).
 \end{definition}
 
 A lumped chain of a given Markov chain need not be a Markov chain in
-general. [Need example]
+general.  [Need example]
 
 \begin{definition}
-  A Markov chain with $X_n$ state space with state space $\mathcal{X}$
-  is said to be \defn{lumpable}\index{lumpable} with respect to a partition $S$ of
-  $\mathcal{X}$ if for every starting distribution \( \xi \) the lumped chain \(
-  \bar{X}_n \) is a Markov chain with state space $S$ and the
-  associated transition probabilities do not depend on the choice of
-  $\xi$.  
+    A Markov chain with \( X_n \) state space with state space \(
+    \mathcal{X} \) is said to be \defn{lumpable}%
+    \index{lumpable}
+    with respect to a partition \( S \) of \( \mathcal{X} \) if for
+    every starting distribution \( \xi \) the lumped chain \( \bar{X}_n \)
+    is a Markov chain with state space \( S \) and the associated
+    transition probabilities do not depend on the choice of \( \xi \).
 \end{definition}
 
 The following theorem gives a necessary and sufficient for a Markov
 chain to be lumpable.
 
 \begin{theorem}
-Denote the transition probability
-of the Markov chain $X_n$ from state $x_i$ to state $x_j$, for \( i, j
-= 1, \dots,  r\), by \( p_{ij} \).  A 
-necessary and sufficient condition for the Markov chain $X$ to be lumpable
-with respect to the partition $S$ is that for every pair of sets
-$E_i$ and $E_j$, \( sum_{x_k \in E_j} p_{ik} \) has the
-same value for every \(x_i \in E_j \). These common values form
-the transition probabilities $\hat{p}_{ij}$ for the lumped chain.
+    Denote the transition probability of the Markov chain \( X_n \) from
+    state \( x_i \) to state \( x_j \), for \( i, j = 1, \dots, r \), by
+    \( p_{ij} \).  A necessary and sufficient condition for the Markov
+    chain \( X \) to be lumpable with respect to the partition \( S \)
+    is that for every pair of sets \( E_i \) and \( E_j \), \( sum_{x_k
+    \in E_j} p_{ik} \) has the same value for every \( x_i \in E_j \).
+    These common values form the transition probabilities \( \hat{p}_{ij}
+    \) for the lumped chain.
 \end{theorem}
 
 \begin{proof}
-  \begin{enumerate}
-  \item Necessity:
     \begin{enumerate}
-    \item 
-  For the chain to be lumpable, it is necessary that
-\[
-  \prob{\bar{X}_1 = E_j \given \bar{X}_0 = E_i} = \probsub{\xi}{X_0
-  \in E_i }
-\]
-be the same for every $\xi$ for which it is defined.    Call this
-common value $\hat{p}_{ij}$.
-\item   In particular this must be the same for
-$\xi$ having a $1$ in its $k$th component for state $x_k \in E_i$.
-Hence $p_{kE_j} = \prob{x_i \in A_j} = \hat{p}_{ij}$.  
-\item Thus the
-condition given is necessary.
-\end{enumerate}
-\item Sufficiency:
-  \begin{enumerate}
-  \item The proof must show that if the condition is satisfied, the
-    probability 
-\[
-  \prob{\bar{X}_n = E_t \given \bar{X}_{n-1} = E_{t_{n-1}},
-    \bar{X}_{n-2} = E_{t_{n-2}}, \dots,  \bar{X}_1 = E_{t_1},
-    \bar{X}_0 = E_i} = \probsub{\xi}{X_0 \in E_i \given X_{n-1} \in E_{t_{n-1}},
-    X_{n-2} \in E_{t_{n-2}}, \dots,  X_1 \in E_{t_1},
-    X_0 \in E_i}
-\]
-depends only on $E_t$ and $E_{t_{n-1}}$.
-\item This conditional probability may be written in the form \(
-  \probsub{\xi'}{x_1 \in E_t} \) where $\xi'$ is a vector with
-  non-zero components only in the sates of $E_{t_{n-1}}$. 
-\item This probability depends on $\xi$ and on the first $n$ outcomes.
-\item However, if \( \probsub{k}{x_1 \in E_t} = \hat{p}_{t, t_{n_1}}
-  \) for all $x_k \in E_t$, then it is clear that $\probsub{\xi'}{x_1
-    \in E_t} = \hat{p}_{st}$.
-\item Thus the probability depends only on $E_s$ and $E_t$. 
-\end{enumerate}
-  \end{enumerate}
+        \item
+            Necessity:
+            \begin{enumerate}
+                \item
+                    For the chain to be lumpable, it is necessary that
+                    \[
+                        \prob{\bar{X}_1 = E_j \given \bar{X}_0 = E_i} =
+                        \probsub{\xi}{X_0 \in E_i }
+                    \] be the same for every \( \xi \) for which it is
+                    defined.  Call this common value \( \hat{p}_{ij} \).
+                \item
+                    In particular this must be the same for \( \xi \)
+                    having a \( 1 \) in its \( k \)th component for
+                    state \( x_k \in E_i \). Hence \( p_{kE_j} = \prob{x_i
+                    \in A_j} = \hat{p}_{ij} \).
+                \item
+                    Thus the condition given is necessary.
+            \end{enumerate}
+        \item
+            Sufficiency:
+            \begin{enumerate}
+                \item
+                    The proof must show that if the condition is
+                    satisfied, the probability
+                    \[
+                        \prob{\bar{X}_n = E_t \given \bar{X}_{n-1} = E_{t_
+                        {n-1}}, \bar{X}_{n-2} = E_{t_{n-2}}, \dots, \bar
+                        {X}_1 = E_{t_1}, \bar{X}_0 = E_i} = \probsub{\xi}
+                        {X_0 \in E_i \given X_{n-1} \in E_{t_{n-1}}, X_{n-2}
+                        \in E_{t_{n-2}}, \dots, X_1 \in E_{t_1}, X_0 \in
+                        E_i}
+                    \] depends only on \( E_t \) and \( E_{t_{n-1}} \).
+                \item
+                    This conditional probability may be written in the
+                    form \( \probsub{\xi'}{x_1 \in E_t} \) where \( \xi'
+                    \) is a vector with non-zero components only in the
+                    sates of \( E_{t_{n-1}} \).
+                \item
+                    This probability depends on \( \xi \) and on the
+                    first \( n \) outcomes.
+                \item
+                    However, if \( \probsub{k}{x_1 \in E_t} = \hat{p}_{t,
+                    t_{n_1}} \) for all \( x_k \in E_t \), then it is
+                    clear that \( \probsub{\xi'}{x_1 \in E_t} = \hat{p}_
+                    {st} \).
+                \item
+                    Thus the probability depends only on \( E_s \) and \(
+                    E_t \).
+            \end{enumerate}
+    \end{enumerate}
 \end{proof}
 
 \begin{example}
-  Recall the example of the weather in the land of Oz, where it is
-  rainy, nice or snowy, with probability transition matrix
-      \[
+    Recall the example of the weather in the land of Oz, where it is
+    rainy, nice or snowy, with probability transition matrix
+    \[
         P = \bordermatrix{ & R & N & S \cr
         R & 1/2 & 1/4 & 1/4 \cr
         N & 1/2 & 0 & 1/2 \cr
         S & 1/4 & 1/4 & 1/2 }.
+    \] Now consider lumping the weather states into only ``good'' days
+    with nice weather and ``bad'' days with rainy or snowy weather.
+    That is, choose the partition \( S = \set{ \set{N}, \set{R,S}} =
+    \set{G, B} \). The probabilities of moving from \( R \) to \( N \)
+    and from \( S \) to \( N \) are the same so the condition for
+    lumpability is satisfied.  The new transition matrix is
+    \[
+        P = \bordermatrix{ G & B \cr
+        G & 0 & 1 \cr
+        B & 1/4 & 3/4}.
     \]
-  Now consider lumping the weather states into only ``good'' days with
-  nice weather and ``bad'' days with rainy or snowy weather.  That is,
-  choose the partition $S = \set{ \set{N}, \set{R,S}} = \set{G, B}$.
-  The probabilities of moving from $R$ to $N$ and from $S$ to $N$ are
-  the same so the condition for lumpability is satisfied.  The new
-  transition matrix is
-  \[
-    P = \bordermatrix{ G & B \cr
-    G & 0 & 1 \cr
-    B & 1/4 & 3/4}.
-\]
 
-On the other hand, notice that the condition for lumpability is not
-satisfied for the partition $S = \set{ \set{R}, \set{N, S}}$ since
-$p_{N S_1} = p_{NR} = 1/2$ and $p_{N S_1} = p_{SR} = 1/4$.
+    On the other hand, notice that the condition for lumpability is not
+    satisfied for the partition \( S = \set{ \set{R}, \set{N, S}} \)
+    since \( p_{N S_1} = p_{NR} = 1/2 \) and \( p_{N S_1} = p_{SR} = 1/4
+    \).
 \end{example}
 
-A matrix formulation of this theorem is useful.
-Introduce some notations.
-Associated with a partition \( \mathbf{S} = \set{E_1,  E_2, \dots,
-  E_v} \) of the finite state space
-\( \mathcal{X} = \set{x_1, x_2, \dots,  x_k}\), of the underlying Markov chain $X_n$, introduce
-two useful matrices. The \defn{distributing matrix}\index{distributing
-  matrix} $U$ is the $v \times k$ matrix with entries
+A matrix formulation of this theorem is useful. Introduce some
+notations. Associated with a partition \( \mathbf{S} = \set{E_1, E_2,
+\dots, E_v} \) of the finite state space \( \mathcal{X} = \set{x_1, x_2,
+\dots, x_k} \), of the underlying Markov chain \( X_n \), introduce two
+useful matrices.  The \defn{distributing matrix}%
+\index{distributing
+  matrix}
+\( U \) is the \( v \times k \) matrix with entries
 \[
-  U_{ij} =
-  \begin{cases}
-    \pi_j/\sum_{k \in E_j} \pi_k & x_k \in E_j \\
-    0                            & \text{otherwise}.
-  \end{cases}
-\]
-The rows of the distributing matrix are the stationary
-distribution restricted to $E_j$ and renormalized so its entries add
-to $1$.   For any probability distribution $q$ in the lumped
-space, the image $qU$ is locally equilibrated, i.e.\ $qU$ restricted
-to any element $E_j$ of the partition equals the stationary
-distribution restricted to $E_j$ and renormalized to add to $q_j$.  In
-particular, with $\hat{\pi} = \pi V$
+    U_{ij} =
+    \begin{cases}
+        \pi_j/\sum_{k \in E_j} \pi_k & x_k \in E_j \\
+        0 & \text{otherwise}.
+    \end{cases}
+\] The rows of the distributing matrix are the stationary distribution
+restricted to \( E_j \) and renormalized so its entries add to \( 1 \).
+For any probability distribution \( q \) in the lumped space, the image \(
+qU \) is locally equilibrated, i.e.\ \( qU \) restricted to any element \(
+E_j \) of the partition equals the stationary distribution restricted to
+\( E_j \) and renormalized to add to \( q_j \).  In particular, with \(
+\hat{\pi} = \pi V \)
 \[
-  U_{ij} = V_{ji} \frac{\pi_j}{\hat{\pi}_{i}}, i = 1, \dots, k, j = 1,
-  \dots, v.
-\]
-whose $i$th
-row, \( \i =
-1, 2, \dots, v \), is the probability vector having equal values for states
-in $E_{\xi}$ and $0$ elsewhere.
+    U_{ij} = V_{ji} \frac{\pi_j}{\hat{\pi}_{i}}, i = 1, \dots, k, j = 1,
+    \dots, v.
+\] whose \( i \)th row, \( \i = 1, 2, \dots, v \), is the probability
+vector having equal values for states in \( E_{\xi} \) and \( 0 \)
+elsewhere.
 
-Note that the rows of $PV$ corresponding to the elements in the same
+Note that the rows of \( PV \) corresponding to the elements in the same
 set of the partition are the same.  This will be true in general for a
-chain satisfying the condition for lumpability.  The matrix $U$ simply
-removes this duplication of rows.  The choice of $U$ is not unique,
-all that is needed is that the $i$th row should be a probability
-vector with non-zero components only for states in $E_i$.  Sometimes
-for simplicity and convenience, choose the vector with equal components.
+chain satisfying the condition for lumpability.  The matrix \( U \)
+simply removes this duplication of rows.  The choice of \( U \) is not
+unique, all that is needed is that the \( i \)th row should be a
+probability vector with non-zero components only for states in \( E_i \).
+Sometimes for simplicity and convenience, choose the vector with equal
+components.
 
-Let the \defn{collecting
-  matrix}\index{collecting matrix} $V$ be the $k \times v$ matrix with the $j$th column,
-\( j = 1, 2, \dots, v \), is a vector with $1$s in the components corresponding to
-states in $E_j$, and $0$ elsewhere.  The collecting matrix specifies
-the lumped probability distribution $\hat{p} = p V$ on the partition
-$E$.   Then $UV = I$ since $V$ simply collects back exactly what $U$
-distributes.   The lumped
+Let the \defn{collecting matrix}%
+\index{collecting matrix}
+\( V \) be the \( k \times v \) matrix with the \( j \)th column, \( j =
+1, 2, \dots, v \), is a vector with \( 1 \)s in the components
+corresponding to states in \( E_j \), and \( 0 \) elsewhere.  The
+collecting matrix specifies the lumped probability distribution \( \hat{p}
+= p V \) on the partition \( E \).  Then \( UV = I \) since \( V \)
+simply collects back exactly what \( U \) distributes.  The lumped
 transition matrix is \( \hat{P} = UPV \).
 
-Next consider the local equilibration operator $VU$.  The name is
-justified by considering its action.  Starting from any distribution
-$p$ on $\mathcal{X}$, $VU$ collects the probability in each $E_j$,
-then redistributes this much probability $pV$ among the lumped states
-in the partition member $E_j$ as $(pC)_j \hat{\pi} \hat{\pi}_i^j$.  In
-particular,
+Next consider the local equilibration operator \( VU \).  The name is
+justified by considering its action.  Starting from any distribution \(
+p \) on \( \mathcal{X} \), \( VU \) collects the probability in each \(
+E_j \), then redistributes this much probability \( pV \) among the
+lumped states in the partition member \( E_j \) as \( (pC)_j \hat{\pi}
+\hat{\pi}_i^j \).  In particular,
 \[
-  \pi = \pi VU. 
+    \pi = \pi VU.
 \]
 
 \begin{example}
-  In the previous lumped land of Oz weather example
-  \[
-    \hat{P} =
-    \begin{pmatrix}
-      0 & 1 & 0 \\
-      1/2 & 0 & 1/2
-    \end{pmatrix}
-    \begin{pmatrix}
-     1/2 & 1/4 & 1/4  \\
-     1/2 & 0 & 1/2 \\
-       1/4 & 1/4 & 1/2 
-   \end{pmatrix}
-   \begin{pmatrix}
-     0 & 1 \\
-     1 & 0 \\
-     0 & 1
-   \end{pmatrix} =
-   \begin{pmatrix}
-     0 & 1 \\
-     1/4 & 3/4
-   \end{pmatrix}.
-   \]
+    In the previous lumped land of Oz weather example
+    \[
+        \hat{P} =
+        \begin{pmatrix}
+            0 & 1 & 0 \\
+            1/2 & 0 & 1/2
+        \end{pmatrix}
+        \begin{pmatrix}
+            1/2 & 1/4 & 1/4 \\
+            1/2 & 0 & 1/2 \\
+            1/4 & 1/4 & 1/2
+        \end{pmatrix}
+        \begin{pmatrix}
+            0 & 1 \\
+            1 & 0 \\
+            0 & 1
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            0 & 1 \\
+            1/4 & 3/4
+        \end{pmatrix}
+        .
+    \]
 \end{example}
 
-
-It is convenient to assume that the state are ordered so that those
-in $E_1$ come first, those in $E_{2}$ come next and so on with those
-in $E_r$ coming last.  From here on, assume that this ordering of
+It is convenient to assume that the state are ordered so that those in \(
+E_1 \) come first, those in \( E_{2} \) come next and so on with those
+in \( E_r \) coming last.  From here on, assume that this ordering of
 states has been made.
 
-
 \begin{theorem}
-  if $P$ is the transition probability matrix of the Markov chain
-$X_n$, then $X_n$ is lumpable with respect to the partition $\mathcal{S}$, if and only if
-\( VUPV = PV \).
+    if \( P \) is the transition probability matrix of the Markov chain \(
+    X_n \), then \( X_n \) is lumpable with respect to the partition \(
+    \mathcal{S} \), if and only if \( VUPV = PV \).
 \end{theorem}
 
 \begin{proof}
-  \begin{enumerate}
-  \item $\Rightarrow$
     \begin{enumerate}
-    \item The matrix $VU$ has the block matrix form
-      \[
-        VU =
-        \begin{pmatrix}
-          W_1 & 0 & 0 \\
-          0   & W_2 & 0 \\
-          0   & 0   & W_3
-        \end{pmatrix}
-      \]
-      where $W_1$, $W_2$, and $W_3$ are probability matrices.
-    \item The hypothesis that \( VUPV = PV \) means that the columns
-      of $PV$ are fixed vectors of $VU$.
-    \item Since the chain is lumpable, the probability of moving from a
-      state of $E_i$ to the set $E_j$ is the same for all states of
-      $A_i$, hence the components of a column of $PV$ corresponding to
-      $A_j$ are all the same.
-    \item Therefore the components form a fixed vector for $W_j$, this proves
-      \(VUPV = PV \).
+        \item
+            \( \Rightarrow \)
+            \begin{enumerate}
+                \item
+                    The matrix \( VU \) has the block matrix form
+                    \[
+                        VU =
+                        \begin{pmatrix}
+                            W_1 & 0 & 0 \\
+                            0 & W_2 & 0 \\
+                            0 & 0 & W_3
+                        \end{pmatrix}
+                    \] where \( W_1 \), \( W_2 \), and \( W_3 \) are
+                    probability matrices.
+                \item
+                    The hypothesis that \( VUPV = PV \) means that the
+                    columns of \( PV \) are fixed vectors of \( VU \).
+                \item
+                    Since the chain is lumpable, the probability of
+                    moving from a state of \( E_i \) to the set \( E_j \)
+                    is the same for all states of \( A_i \), hence the
+                    components of a column of \( PV \) corresponding to \(
+                    A_j \) are all the same.
+                \item
+                    Therefore the components form a fixed vector for \(
+                    W_j \), this proves \( VUPV = PV \).
+            \end{enumerate}
+        \item
+            \( \Leftarrow \)
+            \begin{enumerate}
+                \item
+                    Assume \( VUPV = PV \).  Then the columns of \( PV \)
+                    are fixed vectors for \( VU \).  But each \( W_j \)
+                    is the transition change of an ergodic chain, so its
+                    only fixed column vectors are of the form \( c
+                    \mathbf{1} \).  Hence all the components of a column
+                    of \( PV \) must be the same, so the chain is
+                    lumpable.
+            \end{enumerate}
     \end{enumerate}
-  \item $\Leftarrow$
-    \begin{enumerate}
-    \item Assume \(VUPV = PV \).  Then the columns of $PV$ are fixed
-      vectors for $VU$.  But each $W_j$ is the transition change of an
-      ergodic chain, so its only fixed column vectors are of the form
-      $c \mathbf{1}$.  Hence all the components of a column of $PV$ must be
-      the same, so the chain is lumpable.
-    \end{enumerate}
-  \end{enumerate}
 \end{proof}
 
 \begin{corollary}
-  \[
-    \hat{P}^n = U P^n V.
-  \]
+    \[
+        \hat{P}^n = U P^n V.
+    \]
 \end{corollary}
 
 \begin{proof}
-  From the theorem,
-  \[
-    \hat{P}^2 = U P V U P V = U P^2 V
-  \]
-  and the corollary follows by induction.
+    From the theorem,
+    \[
+        \hat{P}^2 = U P V U P V = U P^2 V
+    \] and the corollary follows by induction.
 \end{proof}
-
 
 \subsection*{Lumping Absorbing Chains}
 
-Assume  $P$  is  an  absorbing  chain.   Restrict
-attention  to  the  case  of  lumping  only  states  of the  same  kind. 
-That is,  any subset of our partition will  contain only absorbing states 
-or  only  non-absorbing  states.     Recall  that the  standard form  for 
-an absorbing chain is
+Assume \( P \) is an absorbing chain.  Restrict attention to the case of
+lumping only states of the same kind. That is, any subset of our
+partition will contain only absorbing states or only non-absorbing
+states.  Recall that the standard form for an absorbing chain is
 \[
-  P =
-  \begin{pmatrix}
-    I & 0 \\
-    R & Q
-  \end{pmatrix}
-\]
-and write $U$ in the form
+    P =
+    \begin{pmatrix}
+        I & 0 \\
+        R & Q
+    \end{pmatrix}
+\] and write \( U \) in the form
 \[
-  U =
-  \begin{pmatrix}
-    U_1 & 0 \\
-    0  & U_{2}
-  \end{pmatrix}
-\]
-where entries of $U_1$ refer to absorbing states and entries of $U_2$
-to non-absorbing states.  Similarly write $V$ in the form
+    U =
+    \begin{pmatrix}
+        U_1 & 0 \\
+        0 & U_{2}
+    \end{pmatrix}
+\] where entries of \( U_1 \) refer to absorbing states and entries of \(
+U_2 \) to non-absorbing states.  Similarly write \( V \) in the form
 \[
-  V 
-  \begin{pmatrix}
-    V_1 & 0 \\
-    0  & V_{2}
-  \end{pmatrix}.
-\]
-In terms of this decomposition, the matrix condition for lumpability
+    V
+    \begin{pmatrix}
+        V_1 & 0 \\
+        0 & V_{2}
+    \end{pmatrix}
+    .
+\] In terms of this decomposition, the matrix condition for lumpability
 becomes
 \begin{align*}
-  V_1 U_1 V_1 &= V_1 \\
-  V_2 U_2 R V_1 &= R V_1 \\
-  V_2 U_2 Q V_2 &= Q V_2.
+    V_1 U_1 V_1 &= V_1 \\
+    V_2 U_2 R V_1 &= R V_1 \\
+    V_2 U_2 Q V_2 &= Q V_2.
 \end{align*}
-Since $U_1 V_1 = I$, the first condition is automatically satisfied.
-The standard form for the transition matrix $\hat{P}$ is
+Since \( U_1 V_1 = I \), the first condition is automatically satisfied.
+The standard form for the transition matrix \( \hat{P} \) is
 \[
-  \hat{P} = UPV =   \begin{pmatrix}
-    U_1 & 0 \\
-    0  & U_{2}
-  \end{pmatrix}
-  \begin{pmatrix}
-    I & 0 \\
-    R & Q
-  \end{pmatrix}
-  \begin{pmatrix}
-    V_1 & 0 \\
-    0  & V_{2}
-  \end{pmatrix}.
-=   \begin{pmatrix}
-    V_1 & 0 \\
-    0  & V_{2}
-  \end{pmatrix}
-  \begin{pmatrix}
-    I & 0 \\
-    U_2 R V_1 & U_2 Q V_2
-  \end{pmatrix}.
-\]
-Then
+    \hat{P} = UPV =
+    \begin{pmatrix}
+        U_1 & 0 \\
+        0 & U_{2}
+    \end{pmatrix}
+    \begin{pmatrix}
+        I & 0 \\
+        R & Q
+    \end{pmatrix}
+    \begin{pmatrix}
+        V_1 & 0 \\
+        0 & V_{2}
+    \end{pmatrix}
+    . =
+    \begin{pmatrix}
+        V_1 & 0 \\
+        0 & V_{2}
+    \end{pmatrix}
+    \begin{pmatrix}
+        I & 0 \\
+        U_2 R V_1 & U_2 Q V_2
+    \end{pmatrix}
+    .
+\] Then
 \begin{align*}
-  \hat{R} &= U_2 R V_1 \\
-  \hat{Q} &= U_2 Q V_2.
+    \hat{R} &= U_2 R V_1 \\
+    \hat{Q} &= U_2 Q V_2.
 \end{align*}
-From $V_2 U_2 Q V_2 = Q V_2$, obtain $\hat{Q}^2 =  U_2 Q V_2 U_2 Q V_2
-&= U_2 Q^2 V_2$.
+From \( V_2 U_2 Q V_2 = Q V_2 \), obtain \( \hat{Q}^2 = U_2 Q V_2 U_2 Q
+V_2 &= U_2 Q^2 V_2 \).
 
-From the infinite series representation for the fundamental matrix $N$
+From the infinite series representation for the fundamental matrix \( N \)
 we have
 \begin{align*}
-  \hat{N} &= I + \hat{Q} + \hat{Q}^2 + \cdots \\
-          &= U_2 I V_2+ U_2 Q V_2 + U_2 Q^2 V_2 + \cdots \\
-          &= U_2 (I +  Q  +  Q^2 + \cdots) \\
-          &= U_2 N V_2.
+    \hat{N} &= I + \hat{Q} + \hat{Q}^2 + \cdots \\
+    &= U_2 I V_2+ U_2 Q V_2 + U_2 Q^2 V_2 + \cdots \\
+    &= U_2 (I + Q + Q^2 + \cdots) \\
+    &= U_2 N V_2.
 \end{align*}
-From this \( \hat{\tau} = U_2 N V_2 \mathbf{1} = U_2 N  \mathbf{1} =
-U_2 \tau\)and
+From this \( \hat{\tau} = U_2 N V_2 \mathbf{1} = U_2 N \mathbf{1} = U_2
+\tau \)and
 \begin{align*}
-  \hat{B} = \hat{N} \hat{R} &= U_2 N V_2 U_2 R V_1 \\
-                            &= U_2 N R V_1 \\
-                            &= U_2 B V_1.
+    \hat{B} = \hat{N} \hat{R} &= U_2 N V_2 U_2 R V_1 \\
+    &= U_2 N R V_1 \\
+    &= U_2 B V_1.
 \end{align*}
 So the important absorption quantities are all easily obtained for the
 lumped chain from the original chain.
 
-A consequence of $\hat{\tau} = U_2 \tau$ is the following.
-Let $E_j$ be any non-absorbing set, and let $x_i$ be a state in
-$E_i$.  Choose the $i$th row of $U_2$ be a probability vector with $1$
-in the $x_k$ component.  This means $t_i = t_\ell$ for all $x_\ell$ in
-$E_j$.  When a chain is lumpable, the mean time to absorption must be
-the same for all starting states in the same set $E_j$
+A consequence of \( \hat{\tau} = U_2 \tau \) is the following. Let \( E_j
+\) be any non-absorbing set, and let \( x_i \) be a state in \( E_i \).
+Choose the \( i \)th row of \( U_2 \) be a probability vector with \( 1 \)
+in the \( x_k \) component.  This means \( t_i = t_\ell \) for all \( x_\ell
+\) in \( E_j \).  When a chain is lumpable, the mean time to absorption
+must be the same for all starting states in the same set \( E_j \)
 
 \subsection*{Lumping Ergodic Chains}
 
-Assume the ergodic chain $X$ is lumpable for some partition $S$.  The
-resulting chain will be also be ergodic.  Let $\hat{A}$ be th limiting
-matrix for the lumped chain.  Then
+Assume the ergodic chain \( X \) is lumpable for some partition \( S \).
+The resulting chain will be also be ergodic.  Let \( \hat{A} \) be th
+limiting matrix for the lumped chain.  Then
 \begin{align*}
-  \hat{A} &= \lim_{\nu \to \infty} \frac{\hat{P} + \hat{P}^2 + \cdots +
-            \hat{P}^{\nu}}{\nu} \\
-  &= \lim_{\nu \to \infty} \frac{UPV + UP^2V + \cdots +
-    UP^{\nu}V}{\nu} \\
-  & = UAV.
+    \hat{A} &= \lim_{\nu \to \infty} \frac{\hat{P} + \hat{P}^2 + \cdots
+    + \hat{P}^{\nu}}{\nu} \\
+    &= \lim_{\nu \to \infty} \frac{UPV + UP^2V + \cdots + UP^{\nu}V}{\nu}
+    \\
+    & = UAV.
 \end{align*}
-This states that the components of $\hat{\alpha}$ are obtained from
-$\alpha$ by simply adding the components of a given set.  From the
-infinite series representation for the fundamental matrix $\hat{Z}$
+This states that the components of \( \hat{\alpha} \) are obtained from \(
+\alpha \) by simply adding the components of a given set.  From the
+infinite series representation for the fundamental matrix \( \hat{Z} \)
 \[
-  \hat{Z} = U Z V.
-\]
-In general, $M$ and $\hat{M}$ have no simple relationship.
-However, the mean time to go from state $x_i$ in $E_j$ to $E_{\ell}$
-in the original process is the same for all states in $E_i$.  
+    \hat{Z} = U Z V.
+\] In general, \( M \) and \( \hat{M} \) have no simple relationship.
+However, the mean time to go from state \( x_i \) in \( E_j \) to \( E_{\ell}
+\) in the original process is the same for all states in \( E_i \).
 \subsection*{Examples}
 
 \begin{example}
     Consider a random walk%
     \index{random walk}
     of a particle which moves along a straight line in unit steps.  Each
-    step is \( 1 \) unit to the right with probability \( \frac{1}{2} \) and to
-    the left with probability \( \frac{1}{2} \).  It moves until it reaches
-    one of two extreme points which are absorbing boundaries.~%
+    step is \( 1 \) unit to the right with probability \( \frac{1}{2} \)
+    and to the left with probability \( \frac{1}{2} \).  It moves until
+    it reaches one of two extreme points which are absorbing
+    boundaries.~%
     \index{absorption probability matrix}
     Assume that if the process reaches the boundary points, it remains
     there from that time on.  Figure~%
@@ -552,275 +581,297 @@ in the original process is the same for all states in $E_i$.
     states numbered from \( -4 \) to \( 4 \).  The absorbing boundary
     states are \( -4 \) and \( 4 \).
 
-    In the small case the state space has $5$ values with absorbing
-    boundary states $x_1$ and $x_5$ and using the ordering for the
-    standard form the transition matrix is
+    In the small case the state space has \( 5 \) values with absorbing
+    boundary states \( x_1 \) and \( x_5 \) and using the ordering for
+    the standard form the transition matrix is
     \[
-      P =
-      \bordermatrix{
-       & s_1 & s_5 & s_2 & s_3 & s4 \cr
-      s_1 1 & 0 & 0 & 0 & 0 \cr
-      s_5 0 & 1 & 0 & 0 & 0 \cr
-      s_2 1/2 & 0 & 0 1/2 & 0 \cr
-      s_3 0 & 0 1/2 & 0 & 1/2 \cr
-      s_4   & 0 & 0 1/2 & 0 \cr
-    }.
-  \]
-  Take the partition $S = \set{ \set{s_1, s_5}, \set{s_2, s_4},
-    \set{s_3}}$.  For  this  partition 
-the condition for lumpabiIity is  satisfied, Notice  that this would not 
-have  been the case  if we  have  unequal probabilities for  moving
-to left or right.
+        P = \bordermatrix{ & s_1 & s_5 & s_2 & s_3 & s4 \cr
+        s_1 1 & 0 & 0 & 0 & 0 \cr
+        s_5 0 & 1 & 0 & 0 & 0 \cr
+        s_2 1/2 & 0 & 0 1/2 & 0 \cr
+        s_3 0 & 0 1/2 & 0 & 1/2 \cr
+        s_4 & 0 & 0 1/2 & 0 \cr
+        }.
+    \] Take the partition \( S = \set{ \set{s_1, s_5}, \set{s_2, s_4},
+    \set{s_3}} \).  For this partition the condition for lumpabiIity is
+    satisfied, Notice that this would not have been the case if we have
+    unequal probabilities for moving to left or right.
 
-It is easy to verify that
-\begin{align*}
-   \hat{P} &=
-   \begin{pmatrix}
-     1 & 0 & 0 \\
-     1/2 & 0 & 1/2 \\
-     0  & 1  & 0
-   \end{pmatrix} \\
-  \hat{N} &=
-  \begin{pmatrix}
-    2 & 1 \\
-    2 & 2
-  \end{pmatrix} \\
-  \hat{\tau} &= (3, 4)^T \\
-  \hat{B} &= (1,1)^T.
-\end{align*}
+    It is easy to verify that
+    \begin{align*}
+        \hat{P} &=
+        \begin{pmatrix}
+            1 & 0 & 0 \\
+            1/2 & 0 & 1/2 \\
+            0 & 1 & 0
+        \end{pmatrix}
+        \\
+        \hat{N} &=
+        \begin{pmatrix}
+            2 & 1 \\
+            2 & 2
+        \end{pmatrix}
+        \\
+        \hat{\tau} &= (3, 4)^T \\
+        \hat{B} &= (1,1)^T.
+    \end{align*}
 \end{example}
 
 \subsection*{Covariance}
 
 It is possible to compute the covariance matrix of the lumped process.
-The covariances are easily obtainable from \( C \) even if the
-original process is not lumpable with respect to the partition, that
-is, the lumped process is not a Markov chain.  In any case,
+The covariances are easily obtainable from \( C \) even if the original
+process is not lumpable with respect to the partition, that is, the
+lumped process is not a Markov chain.  In any case,
 \[
-  \hat{C} = \sum{s_k \in A_i, s_{\ell} \in A_j } c_{kl}.
+    \hat{C} = \sum{s_k \in A_i, s_{\ell} \in A_j } c_{kl}.
 \]
 
 \begin{example}
-  For the weather in the Land of Oz example.
-  \begin{align*}
-   \hat{A} &=
-    \begin{pmatrix}
-      0 & 1 & 0 \\
-      1/2 & 0 & 1/2
-    \end{pmatrix}
-    \begin{pmatrix}
-      2/5 & 1/5 & 2/5 \\
-      2/5 & 1/5 & 2/5 \\
-      2/5 & 1/5 & 2/5 \\
-    \end{pmatrix}
-    \begin{pmatrix}
-      0 & 1 \\
-      1 & 0 \\
-      0 & 1
-    \end{pmatrix} \\
-    & =
-    \begin{pmatrix}
-      1/5 & 4/5 \\
-      1/5 & 4/5
-    \end{pmatrix} \\
-   Z =      \begin{pmatrix}
-      0 & 1 & 0 \\
-      1/2 & 0 & 1/2
-    \end{pmatrix}
-    \begin{pmatrix}
-      86/75 & 13/75 & -14/75 \\
-       6/75 & 63/75 &   6/75 \\
-     -14/75  & 3/75 &  86/75 \\
-    \end{pmatrix}
-    \begin{pmatrix}
-      0 & 1 \\
-      1 & 0 \\
-      0 & 1
-    \end{pmatrix} \\
-    & =
-    \begin{pmatrix}
-      63/75 & 12/75 \\
-       3/75 & 72/75
-    \end{pmatrix} \\
-    \hat{C} =
-    \begin{pmatrix}
-      12/125  & -12/125 \\
-    -12/125   &  12/125
-  \end{pmatrix} \\
-    M &= \bordermatrix{
-        & R & N & S \cr
-    R & 5/2 & 4 & 10/3 \cr
-    8/3 & 5 & 8/3 \cr
-    10/3 & 4 & 5/2}.
-  \end{align*}
-  From the fundamental matrix \( \hat{Z} \) find that
-  \[
-    \hat{M} = \bordermatrix{
-      & N & B \cr
-      N & 5 & 1 \cr
-      B & 4 & 5/4
-    }.
-  \]
-The mean time to reach \( N \) from either \( R \) or \( S
-\) is \( 4 \).  Recall that \( N \) in the lumped process is a single
-element set.  This common value is the mean time in the lumped chain
-to go from $B$ to $N$.  Similarly, the value \( 5 \) is obtainable
-from \( M \).  The mean time to go from $N$ to $B$ is less than the
-mean time to go from $N$ to either of the states $B$ in the original
-process.
+    For the weather in the Land of Oz example.
+    \begin{align*}
+        \hat{A} &=
+        \begin{pmatrix}
+            0 & 1 & 0 \\
+            1/2 & 0 & 1/2
+        \end{pmatrix}
+        \begin{pmatrix}
+            2/5 & 1/5 & 2/5 \\
+            2/5 & 1/5 & 2/5 \\
+            2/5 & 1/5 & 2/5 \\
+        \end{pmatrix}
+        \begin{pmatrix}
+            0 & 1 \\
+            1 & 0 \\
+            0 & 1
+        \end{pmatrix}
+        \\
+        & =
+        \begin{pmatrix}
+            1/5 & 4/5 \\
+            1/5 & 4/5
+        \end{pmatrix}
+        \\
+        Z =
+        \begin{pmatrix}
+            0 & 1 & 0 \\
+            1/2 & 0 & 1/2
+        \end{pmatrix}
+        \begin{pmatrix}
+            86/75 & 13/75 & -14/75 \\
+            6/75 & 63/75 & 6/75 \\
+            -14/75 & 3/75 & 86/75 \\
+        \end{pmatrix}
+        \begin{pmatrix}
+            0 & 1 \\
+            1 & 0 \\
+            0 & 1
+        \end{pmatrix}
+        \\
+        & =
+        \begin{pmatrix}
+            63/75 & 12/75 \\
+            3/75 & 72/75
+        \end{pmatrix}
+        \\
+        \hat{C} =
+        \begin{pmatrix}
+            12/125 & -12/125 \\
+            -12/125 & 12/125
+        \end{pmatrix}
+        \\
+        M &= \bordermatrix{ & R & N & S \cr
+        R & 5/2 & 4 & 10/3 \cr
+        8/3 & 5 & 8/3 \cr
+        10/3 & 4 & 5/2}.
+    \end{align*}
+    From the fundamental matrix \( \hat{Z} \) find that
+    \[
+        \hat{M} = \bordermatrix{ & N & B \cr
+        N & 5 & 1 \cr
+        B & 4 & 5/4 }.
+    \] The mean time to reach \( N \) from either \( R \) or \( S \) is \(
+    4 \).  Recall that \( N \) in the lumped process is a single element
+    set.  This common value is the mean time in the lumped chain to go
+    from \( B \) to \( N \).  Similarly, the value \( 5 \) is obtainable
+    from \( M \).  The mean time to go from \( N \) to \( B \) is less
+    than the mean time to go from \( N \) to either of the states \( B \)
+    in the original process.
 \end{example}
 
 \subsection*{Bounding Lumping Errors}
 
-Starting from a distribution $x_0$ on $\mathcal{X}$, the time
-evolution among the lumped states $E_j$ is $\hat{x}_{t} = x_0 P^t V$,
-while the time evolution of the lumped Markov chain is $y_t = x_0U
-\hat{P}^t$.  The question is how different these two dynamics can be.
+Starting from a distribution \( x_0 \) on \( \mathcal{X} \), the time
+evolution among the lumped states \( E_j \) is \( \hat{x}_{t} = x_0 P^t
+V \), while the time evolution of the lumped Markov chain is \( y_t = x_0U
+\hat{P}^t \).  The question is how different these two dynamics can be.
 
-Define the norm $\| \cdot \|_{\pi}$ by
+Define the norm \( \| \cdot \|_{\pi} \) by
 \[
-  \| v\|_{\pi} = \| v D_{\pi} \|_2 = \sqrt{\sum_{\nu}
-    v_{\nu}^{2/\pi_\nu}}
-\]
-where $D_{\pi} = \operatorname{diag}(1/\sqrt{\pi_1}, \dots,
-1/\sqrt{\pi_k})$ and $\| \cdot \|_2$ is the standard Euclidean
-$2$-norm.  The corresponding operator norm is
+    \| v\|_{\pi} = \| v D_{\pi} \|_2 = \sqrt{\sum_{\nu} v_{\nu}^{2/\pi_\nu}}
+\] where \( D_{\pi} =
+\operatorname{diag}
+(1/\sqrt{\pi_1}, \dots, 1/\sqrt{\pi_k}) \) and \( \| \cdot \|_2 \) is
+the standard Euclidean \( 2 \)-norm.  The corresponding operator norm is
 \begin{multline*}
-  \| A \|_{\pi} = \max_{\|x\|_{\pi}=1}\|xA\|_{\pi} =
-  \max_{\|xD_{\pi}\|_2 = 1}\|x D_{\pi} D_{\pi}^{-1} A D_{\pi}\|_{2} = \\
-  \max_{\|w\|_2 = 1}\|w D_{\pi}^{-1} A D_{\pi}\|_{2} =
-  \| D_{\pi}^{-1} A D_{\pi}\|_{2}
+    \| A \|_{\pi} = \max_{\|x\|_{\pi}=1}\|xA\|_{\pi} = \max_{\|xD_{\pi}\|_2
+    = 1}\|x D_{\pi} D_{\pi}^{-1} A D_{\pi}\|_{2} = \\
+    \max_{\|w\|_2 = 1}\|w D_{\pi}^{-1} A D_{\pi}\|_{2} = \| D_{\pi}^{-1}
+    A D_{\pi}\|_{2}
 \end{multline*}
 
 The one step time difference is
 \[
-  \| x_0 V \hat{P} - x_0 G V \|_{\pi} = \| x_0 V U P V - x_0 P V
-  \|_{\pi} = \| x_0 (VUP - P) V \|_{\pi}.
-\]
-The $n$ step time difference is
+    \| x_0 V \hat{P} - x_0 G V \|_{\pi} = \| x_0 V U P V - x_0 P V \|_{\pi}
+    = \| x_0 (VUP - P) V \|_{\pi}.
+\] The \( n \) step time difference is
 \begin{multline*}
-  \| x_0 V \hat{P}^n - x_0 G^n V \|_{\pi} = \| x_0 V (U P V)^n - x_0 P^n V
-  \|_{\pi} \\
-  = \| x_0 VUPVUP \cdots PVUPPV  - x_0 P^n V \|_{\pi} = \| x_0
-  (VUP)^n V - x_0 P^n V \|_{\pi} = \| x_0 ((VUP)^n - P^n) V \|_{\pi}.
+    \| x_0 V \hat{P}^n - x_0 G^n V \|_{\pi} = \| x_0 V (U P V)^n - x_0 P^n
+    V \|_{\pi} \\
+    = \| x_0 VUPVUP \cdots PVUPPV - x_0 P^n V \|_{\pi} = \| x_0 (VUP)^n
+    V - x_0 P^n V \|_{\pi} = \| x_0 ((VUP)^n - P^n) V \|_{\pi}.
 \end{multline*}
-The important operator for bounding the difference is $VUP$.
-For convenience, let $VUP = H$.
+The important operator for bounding the difference is \( VUP \). For
+convenience, let \( VUP = H \).
 
-The goal is to bound the $n$-step difference $\| H^n - P^n \|_{\pi}$ in
-terms of the $1$-step difference $\| H - P\|_{\pi}$.  The general
-behavior of the difference  is that it can grow for a while, but must
-eventually decline to $0$ since by construction the lumped and
-unlumped chain converge to the same equilibrium distribution.
-Bounding how large the difference can get in terms of the $1$-step
-difference is the next theorem.
+The goal is to bound the \( n \)-step difference \( \| H^n - P^n \|_{\pi}
+\) in terms of the \( 1 \)-step difference \( \| H - P\|_{\pi} \).  The
+general behavior of the difference is that it can grow for a while, but
+must eventually decline to \( 0 \) since by construction the lumped and
+unlumped chain converge to the same equilibrium distribution. Bounding
+how large the difference can get in terms of the \( 1 \)-step difference
+is the next theorem.
 
 \begin{theorem}
-  Let $ \delta = \| VUP - P \|_{\pi}$.  Then
-  \[
-    \| (VUP)^n - P^n \|_{\pi} < K(n) < \hat{K} \delta
-  \]
-  with $K(n) = n \abs{\lambda_2}^{n-1}$, where $\lambda_2$ is the
-  second largest eigenvalue of $P$ and $\hat{K} = -1/(\lambda_2
-  \EulerE \log(\lambda_2))$.
+    Let \( \delta = \| VUP - P \|_{\pi} \).  Then
+    \[
+        \| (VUP)^n - P^n \|_{\pi} < K(n) < \hat{K} \delta
+    \] with \( K(n) = n \abs{\lambda_2}^{n-1} \), where \( \lambda_2 \)
+    is the second largest eigenvalue of \( P \) and \( \hat{K} = -1/(\lambda_2
+    \EulerE \log(\lambda_2)) \).
 \end{theorem}
 
 \begin{proof}
-  \begin{enumerate}
-  \item First note that
-    \[
-      \| H^n - P^n \|_{\pi} = \|(H-P)H^{n-1}+P(H^{n-1} -P^{n-1}\|_{\pi}.
-    \]
-  \item Iterating,
-    \begin{align*}
-      \| H^n - P^n \|_{\pi} &= \| \sum_{\nu=0}^{n-1}
-      P^k(H-P)H^{n-k-1}\|_{\pi} \\
-      & \le \sum_{\nu=0}^{n-1} \|  P^k(H-P)H^{n-k-1}\|_{\pi}.
-    \end{align*}
-  \item Recall that $H$ and $P$ have common stationary distribution
-    $\pi$.  Define the projection $P_{\pi} = \mathbf{1}^T \pi$.  The
-    complementary projection is $P_{\sigma} = I - P_{\pi}$.
-    $P_{\sigma}$ projects any vector onto the subspace $\Sigma =
-    \setof{v}{v \mathbf{1}^T}$.  $\Sigma$ is invariant under the
-    action of any stochastic matrix.
-  \item The decomposition into the subspaces gives the representation
-    of $P$ and $H$:
-    \begin{align*}
-      P &= (P_{\pi} + P_{\sigma}) P = P_{\pi} + P_{\sigma}P \\
-      H &= (P_{\pi} + P_{\sigma}) H = P_{\pi} + P_{\sigma}H. \\
-    \end{align*}
-  \item Then $H - P = P_{\sigma}H - P_{\sigma}P$ and $0 = P_{\pi}
-    P_{\sigma} P = P_{\sigma} P P_{\pi} = P_{\pi}
-    P_{\sigma} H = P_{\sigma} H P_{\pi}$.
-  \item Recall $ \delta = \| VUP - P \|_{\pi}$ and $VUP = H$, so $\|
-    VUP - P \|_{\pi} = \| H - P \|_{\pi} = \|P_{\sigma}H -
-    P_{\sigma}P\|_{\pi}\|_{\pi} = \delta$.
-  \item For integers $k$, $n$
-    \begin{align*}
-      & \| P^k(H-P)H^{n-k-1} \|_{\pi} \\
-      & \qquad = \|(P_{\pi}+P_{\sigma}P)^k(P_{\sigma}H-P_{\sigma}P)
-        (P_{\pi}+P_{\sigma}H)^{n-1-K}\|_{\pi} \\
-      & \qquad = \|P_{\sigma}P)^k(P_{\sigma}H-P_{\sigma}P)
-        (P_{\sigma}H)^{n-1-K}\|_{\pi} \\
-      & \qquad = \| P_{\sigma} P \|_{\pi}^k \delta \|P_{\sigma}H\|_{\pi}^{n-k-1}.
-    \end{align*}
-  \item  Use the special choice of norm, in particular, use
-    the fact that for a matrix \( \| A \|_{\pi} = \| D_{\pi}^{-1} A
-    D_{\pi} \|_{2} \).  By the assumption of reversibility,  $D_{\pi}^{-1} P
-    D_{\pi}$ is a symmetric matrix.  Therefore, the $2$-norm is the
-    dominant eigenvalue of the matrix.  In fact, as shown below the
-    diagonal matrix $U_{\pi}$ also symmetrizes $P_{\pi}$, $P_{\pi}P$,
-    $P_{\sigma}P$, and $VU$.  Thus each has norm equaling the dominant
-    eigenvalue.
-  \item Direct calculation shows $\pi U_{\pi} = \mathbf{1}
-    U_{\pi}^{-1}$. Thus, $D_{\pi}^{-1} P_{\pi} D_{\pi} = D_{\pi}^{-1}
-    \mathbf{1}^{T} \pi D_{\pi} = (\mathbf{1} D_{\pi}^{-1})^T(\pi
-    D_{\pi}) = (\pi D_{\pi})^T(\pi D_{\pi}) = ( (\pi D_{\pi})^T(\pi
-    D_{\pi}))^T = (D_{\pi}^{-1} P_{\pi} D_{\pi})^T$.  This shows
-    $P_{\pi}$ is symmetrized by $D_{\pi}$.
-\item So $D_{\pi}^{-1} P D_{\pi}$ and $D_{\pi}^{-1} P_{\pi} D_{\pi}$
-  are symmetric and commute with each other since $P$ and $P_{\pi}$
-  commute.  Thus, $D_{\pi}^{-1} P_{\pi} P D_{\pi} = D_{\pi}^{-1}
-  P_{\pi} D_{\pi} D_{\pi}^{-1} P D_{\pi}$ is symmetric.
-\item Then $D_{\pi}^{-1} P_{\sigma} P D_{\pi} = D_{\pi}^{-1}
-  (I-P_{\pi}) P D_{\pi}$ is symmetric as well.
-\item From $U_{ij} = V_{ji} \frac{\pi_j}{\hat{\pi}_{i}}$, it follows
-  that $D = D_{\hat{\pi}}^2 V^T D_{\pi}^2$ or equivalently
-  $D_{\hat{\pi}}^{-1} U D_{\pi} = D_{\hat{\pi}} V^T D_{\pi}$.
-\item Thus,
-  \begin{align*}
-    D_{\pi}^{-1} VU D_{\pi} &= (D_{\pi}^{-1} V
-                              D_{\hat{\pi}})(D_{\hat{\pi}}^{-1} U
-                              D_{\pi}) \\
-    &= (D_{\pi}^{-1} V D_{\hat{\pi}})(D_{\hat{\pi}}^{-1} V^T D_{\pi}^{-1}) \\
-    &= (D_{\pi}^{-1} V D_{\hat{\pi}})(D_{\pi}^{-1} V D_{\hat{\pi}}).
-  \end{align*}
-  As the product of a matrix and it transpose, $VU$ is symmetrized by
-  $D_{\pi}$.
-\item Since $D_{\pi}^{-1} P_{\sigma} P D_{\pi}$ is symmetric and based
-  on the definition of the matrix norm $\| P_{\sigma} P \|_{\pi} =
-  \abs{\lambda_2}$ where $\lambda_2$ is the second-largest eigenvalue
-  of $P$.  To bound $\| P_{\sigma} H$
-  \begin{multline*}
-    \| P_{\sigma} H \|_{\pi} = \| VUP - P_{\sigma} \|_{\pi} = \| VUP -
-    VUP_{\sigma}\|_{\pi} \\
-    = \| VU(P - P_{\sigma})\|_{\pi} \le \|P_{\sigma} P\|_{\pi}
-    \|VU\|_{\pi} = \abs{\lambda_2} \|VU\|_{\pi}.
-  \end{multline*}
-\item Since $VU$ is a stochastic matrix and$D_{\pi}$ symmetrizes $VU$,
-  it follows that $\| VU \|_{\pi} = 1$.
-\item Thus the bound becomes $\| H^n - P^n\|_{\pi} \le n
-  \abs{\lambda_2}^{n-1} \delta = K(n) \delta$ where $K(n) = n \abs{\lambda_2}^{n-1}$.
-\item Maximizing $K(n)$ over $n$ gives $K(n) \le \hat{K} =
-  \frac{-1}{\lambda_2 \EulerE \log(\lambda_2)}$.
-  \end{enumerate}
+    \begin{enumerate}
+        \item
+            First note that
+            \[
+                \| H^n - P^n \|_{\pi} = \|(H-P)H^{n-1}+P(H^{n-1} -P^{n-1}\|_
+                {\pi}.
+            \]
+        \item
+            Iterating,
+            \begin{align*}
+                \| H^n - P^n \|_{\pi} &= \| \sum_{\nu=0}^{n-1} P^k(H-P)H^
+                {n-k-1}\|_{\pi} \\
+                & \le \sum_{\nu=0}^{n-1} \| P^k(H-P)H^{n-k-1}\|_{\pi}.
+            \end{align*}
+        \item
+            Recall that \( H \) and \( P \) have common stationary
+            distribution \( \pi \).  Define the projection \( P_{\pi} =
+            \mathbf{1}^T \pi \).  The complementary projection is \( P_{\sigma}
+            = I - P_{\pi} \). \( P_{\sigma} \) projects any vector onto
+            the subspace \( \Sigma = \setof{v}{v \mathbf{1}^T} \).  \(
+            \Sigma \) is invariant under the action of any stochastic
+            matrix.
+        \item
+            The decomposition into the subspaces gives the
+            representation of \( P \) and \( H \):
+            \begin{align*}
+                P &= (P_{\pi} + P_{\sigma}) P = P_{\pi} + P_{\sigma}P \\
+                H &= (P_{\pi} + P_{\sigma}) H = P_{\pi} + P_{\sigma}H.
+                \\
+            \end{align*}
+        \item
+            Then \( H - P = P_{\sigma}H - P_{\sigma}P \) and \( 0 = P_{\pi}
+            P_{\sigma} P = P_{\sigma} P P_{\pi} = P_{\pi} P_{\sigma} H =
+            P_{\sigma} H P_{\pi} \).
+        \item
+            Recall \( \delta = \| VUP - P \|_{\pi} \) and \( VUP = H \),
+            so \( \| VUP - P \|_{\pi} = \| H - P \|_{\pi} = \|P_{\sigma}H
+            - P_{\sigma}P\|_{\pi}\|_{\pi} = \delta \).
+        \item
+            For integers \( k \), \( n \)
+            \begin{align*}
+                & \| P^k(H-P)H^{n-k-1} \|_{\pi} \\
+                & \qquad = \|(P_{\pi}+P_{\sigma}P)^k(P_{\sigma}H-P_{\sigma}P)
+                (P_{\pi}+P_{\sigma}H)^{n-1-K}\|_{\pi} \\
+                & \qquad = \|P_{\sigma}P)^k(P_{\sigma}H-P_{\sigma}P) (P_
+                {\sigma}H)^{n-1-K}\|_{\pi} \\
+                & \qquad = \| P_{\sigma} P \|_{\pi}^k \delta \|P_{\sigma}H\|_
+                {\pi}^{n-k-1}.
+            \end{align*}
+        \item
+            Use the special choice of norm, in particular, use the fact
+            that for a matrix \( \| A \|_{\pi} = \| D_{\pi}^{-1} A D_{\pi}
+            \|_{2} \).  By the assumption of reversibility, \( D_{\pi}^{-1}
+            P D_{\pi} \) is a symmetric matrix.  Therefore, the \( 2 \)-norm
+            is the dominant eigenvalue of the matrix.  In fact, as shown
+            below the diagonal matrix \( U_{\pi} \) also symmetrizes \(
+            P_{\pi} \), \( P_{\pi}P \), \( P_{\sigma}P \), and \( VU \).
+            Thus each has norm equaling the dominant eigenvalue.
+        \item
+            Direct calculation shows \( \pi U_{\pi} = \mathbf{1} U_{\pi}^
+            {-1} \).  Thus, \( D_{\pi}^{-1} P_{\pi} D_{\pi} = D_{\pi}^{-1}
+            \mathbf{1}^{T} \pi D_{\pi} = (\mathbf{1} D_{\pi}^{-1})^T(\pi
+            D_{\pi}) = (\pi D_{\pi})^T(\pi D_{\pi}) = ( (\pi D_{\pi})^T(\pi
+            D_{\pi}))^T = (D_{\pi}^{-1} P_{\pi} D_{\pi})^T \).  This
+            shows \( P_{\pi} \) is symmetrized by \( D_{\pi} \).
+        \item
+            So \( D_{\pi}^{-1} P D_{\pi} \) and \( D_{\pi}^{-1} P_{\pi}
+            D_{\pi} \) are symmetric and commute with each other since \(
+            P \) and \( P_{\pi} \) commute.  Thus, \( D_{\pi}^{-1} P_{\pi}
+            P D_{\pi} = D_{\pi}^{-1} P_{\pi} D_{\pi} D_{\pi}^{-1} P D_{\pi}
+            \) is symmetric.
+        \item
+            Then \( D_{\pi}^{-1} P_{\sigma} P D_{\pi} = D_{\pi}^{-1} (I-P_
+            {\pi}) P D_{\pi} \) is symmetric as well.
+        \item
+            From \( U_{ij} = V_{ji} \frac{\pi_j}{\hat{\pi}_{i}} \), it
+            follows that \( D = D_{\hat{\pi}}^2 V^T D_{\pi}^2 \) or
+            equivalently \( D_{\hat{\pi}}^{-1} U D_{\pi} = D_{\hat{\pi}}
+            V^T D_{\pi} \).
+        \item
+            Thus,
+            \begin{align*}
+                D_{\pi}^{-1} VU D_{\pi} &= (D_{\pi}^{-1} V D_{\hat{\pi}})
+                (D_{\hat{\pi}}^{-1} U D_{\pi}) \\
+                &= (D_{\pi}^{-1} V D_{\hat{\pi}})(D_{\hat{\pi}}^{-1} V^T
+                D_{\pi}^{-1}) \\
+                &= (D_{\pi}^{-1} V D_{\hat{\pi}})(D_{\pi}^{-1} V D_{\hat
+                {\pi}}).
+            \end{align*}
+            As the product of a matrix and it transpose, \( VU \) is
+            symmetrized by \( D_{\pi} \).
+        \item
+            Since \( D_{\pi}^{-1} P_{\sigma} P D_{\pi} \) is symmetric
+            and based on the definition of the matrix norm \( \| P_{\sigma}
+            P \|_{\pi} = \abs{\lambda_2} \) where \( \lambda_2 \) is the
+            second-largest eigenvalue of \( P \).  To bound \( \| P_{\sigma}
+            H \)
+            \begin{multline*}
+                \| P_{\sigma} H \|_{\pi} = \| VUP - P_{\sigma} \|_{\pi}
+                = \| VUP - VUP_{\sigma}\|_{\pi} \\
+                = \| VU(P - P_{\sigma})\|_{\pi} \le \|P_{\sigma} P\|_{\pi}
+                \|VU\|_{\pi} = \abs{\lambda_2} \|VU\|_{\pi}.
+            \end{multline*}
+        \item
+            Since \( VU \) is a stochastic matrix and\( D_{\pi} \)
+            symmetrizes \( VU \), it follows that \( \| VU \|_{\pi} = 1 \).
+        \item
+            Thus the bound becomes \( \| H^n - P^n\|_{\pi} \le n \abs{\lambda_2}^
+            {n-1} \delta = K(n) \delta \) where \( K(n) = n \abs{\lambda_2}^
+            {n-1} \).
+        \item
+            Maximizing \( K(n) \) over \( n \) gives \( K(n) \le \hat{K}
+            = \frac{-1}{\lambda_2 \EulerE \log(\lambda_2)} \).
+    \end{enumerate}
 \end{proof}
 
 \visual{Section Starter Question}{../../../../CommonInformation/Lessons/question_mark.png}
 \section*{Section Ending Answer}
 
-\subsection*{Sources}
-This section is adapted from: 
+\subsection*{Sources} This section is adapted from:
 
 \nocite{}
 \nocite{}
@@ -844,20 +895,20 @@ This section is adapted from:
 \renewcommand{\theexercise}{\arabic{exercise}}
 
 \begin{exercise}
-  
+
 \end{exercise}
 \begin{solution}
-  
+
 \end{solution}
 \begin{exercise}
-  \begin{enumerate}[label=(\alpha*)]
-  \item 
-  \end{enumerate}
+    \begin{enumerate}[label=(\alpha*)]
+    \item
+\end{enumerate}
 \end{exercise}
 \begin{solution}
-  \begin{enumerate}[label=(\alpha*)]
-  \item 
-  \end{enumerate}
+    \begin{enumerate}[label=(\alpha*)]
+    \item
+\end{enumerate}
 \end{solution}
 
 \hr
@@ -868,9 +919,9 @@ This section is adapted from:
 \bibliography{../../../../CommonInformation/bibliography}
 
 %   \begin{enumerate}
-%     \item 
-%     \item 
-%     \item 
+%     \item
+%     \item
+%     \item
 %   \end{enumerate}
 
 \hr
@@ -878,14 +929,13 @@ This section is adapted from:
 \visual{Links}{../../../../CommonInformation/Lessons/chainlink.png}
 \section*{Outside Readings and Links:}
 \begin{enumerate}
-  \item  
-  \item  
-  \item  
-  \item 
+    \item
+    \item
+    \item
+    \item
 \end{enumerate}
 
-\section*{\solutionsname}
-\loadSolutions
+\section*{\solutionsname} \loadSolutions
 
 \hr
 
