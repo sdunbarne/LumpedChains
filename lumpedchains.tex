@@ -87,17 +87,17 @@ proofs. % Mathematicians Only: prolonged scenes of intense rigor.
         probabilities for \( \bar{X}_n \) as follows: The initial
         distribution is
         \[
-            \prob{\bar{X}_0 = E_i} = \probsub{X_0 \in E_i}.
+            \Prob{\bar{X}_0 = E_i} = \Probsub{X_0 \in E_i}.
         \] Given the initial state, the transition probability for step \(
         1 \) is
         \[
-            \prob{\bar{X}_1 = E_j \given \bar{X}_0 = E_i} = \probsub{\xi}
+            \Prob{\bar{X}_1 = E_j \given \bar{X}_0 = E_i} = \Probsub{\xi}
             {X_0 \in E_i }.
         \] In general for the \( n \)th step
         \[
-            \prob{\bar{X}_1 = E_t \given \bar{X}_{n-1} = E_{s_{n-1}},
+            \Prob{\bar{X}_1 = E_t \given \bar{X}_{n-1} = E_{s_{n-1}},
             \bar{X}_{n-2} = E_{s_{n-2}}, \dots, \bar{X}_1 = E_{s_1},
-            \bar{X}_0 = E_i} = \probsub{\xi}{X_0 \in E_i \given X_{n-1}
+            \bar{X}_0 = E_i} = \Probsub{\xi}{X_0 \in E_i \given X_{n-1}
             \in E_{s_{n-1}}, X_{n-2} \in E_{s_{n-2}}, \dots, X_1 \in E_{s_1},
             X_0 \in E_i}.
         \] Call this new chain \( \bar{X}_n \), a \defn{lumped chain}%
@@ -174,17 +174,17 @@ i.e.\ to bound the error in a coarse grained description.
     step of the original chain.  Assign the transition probabilities for
     \( \bar{X}_n \) as follows: The initial distribution is
     \[
-        \prob{\bar{X}_0 = E_i} = \probsub{\xi}{X_0 \in E_i}.
+        \Prob{\bar{X}_0 = E_i} = \Probsub{\xi}{X_0 \in E_i}.
     \] Given the initial state, the transition probability for step \( 1
     \) is
     \[
-        \prob{\bar{X}_1 = E_j \given \bar{X}_0 = E_i} = \probsub{\xi}{X_0
+        \Prob{\bar{X}_1 = E_j \given \bar{X}_0 = E_i} = \Probsub{\xi}{X_0
         \in E_i }.
     \] In general for the \( n \)th step
     \[
-        \prob{\bar{X}_n = E_t \given \bar{X}_{n-1} = E_{t_{n-1}}, \bar{X}_
+        \Prob{\bar{X}_n = E_t \given \bar{X}_{n-1} = E_{t_{n-1}}, \bar{X}_
         {n-2} = E_{t_{n-2}}, \dots, \bar{X}_1 = E_{t_1}, \bar{X}_0 = E_i}
-        = \probsub{\xi}{X_0 \in E_i \given X_{n-1} \in E_{t_{n-1}}, X_{n-2}
+        = \Probsub{\xi}{X_0 \in E_i \given X_{n-1} \in E_{t_{n-1}}, X_{n-2}
         \in E_{t_{n-2}}, \dots, X_1 \in E_{t_1}, X_0 \in E_i}.
     \] Call this new chain \( \bar{X}_n \), a \defn{lumped chain}%
     \index{lumped chain}
@@ -226,14 +226,14 @@ chain to be lumpable.
                 \item
                     For the chain to be lumpable, it is necessary that
                     \[
-                        \prob{\bar{X}_1 = E_j \given \bar{X}_0 = E_i} =
-                        \probsub{\xi}{X_0 \in E_i }
+                        \Prob{\bar{X}_1 = E_j \given \bar{X}_0 = E_i} =
+                        \Probsub{\xi}{X_0 \in E_i }
                     \] be the same for every \( \xi \) for which it is
                     defined.  Call this common value \( \hat{p}_{ij} \).
                 \item
                     In particular this must be the same for \( \xi \)
                     having a \( 1 \) in its \( k \)th component for
-                    state \( x_k \in E_i \). Hence \( p_{kE_j} = \prob{x_i
+                    state \( x_k \in E_i \). Hence \( p_{kE_j} = \Prob{x_i
                     \in A_j} = \hat{p}_{ij} \).
                 \item
                     Thus the condition given is necessary.
@@ -245,25 +245,25 @@ chain to be lumpable.
                     The proof must show that if the condition is
                     satisfied, the probability
                     \[
-                        \prob{\bar{X}_n = E_t \given \bar{X}_{n-1} = E_{t_
+                        \Prob{\bar{X}_n = E_t \given \bar{X}_{n-1} = E_{t_
                         {n-1}}, \bar{X}_{n-2} = E_{t_{n-2}}, \dots, \bar
-                        {X}_1 = E_{t_1}, \bar{X}_0 = E_i} = \probsub{\xi}
+                        {X}_1 = E_{t_1}, \bar{X}_0 = E_i} = \Probsub{\xi}
                         {X_0 \in E_i \given X_{n-1} \in E_{t_{n-1}}, X_{n-2}
                         \in E_{t_{n-2}}, \dots, X_1 \in E_{t_1}, X_0 \in
                         E_i}
                     \] depends only on \( E_t \) and \( E_{t_{n-1}} \).
                 \item
                     This conditional probability may be written in the
-                    form \( \probsub{\xi'}{x_1 \in E_t} \) where \( \xi'
+                    form \( \Probsub{\xi'}{x_1 \in E_t} \) where \( \xi'
                     \) is a vector with non-zero components only in the
                     sates of \( E_{t_{n-1}} \).
                 \item
                     This probability depends on \( \xi \) and on the
                     first \( n \) outcomes.
                 \item
-                    However, if \( \probsub{k}{x_1 \in E_t} = \hat{p}_{t,
+                    However, if \( \Probsub{k}{x_1 \in E_t} = \hat{p}_{t,
                     t_{n_1}} \) for all \( x_k \in E_t \), then it is
-                    clear that \( \probsub{\xi'}{x_1 \in E_t} = \hat{p}_
+                    clear that \( \Probsub{\xi'}{x_1 \in E_t} = \hat{p}_
                     {st} \).
                 \item
                     Thus the probability depends only on \( E_s \) and \(
@@ -517,7 +517,7 @@ The standard form for the transition matrix \( \hat{P} \) is
     \hat{Q} &= U_2 Q V_2.
 \end{align*}
 From \( V_2 U_2 Q V_2 = Q V_2 \), obtain \( \hat{Q}^2 = U_2 Q V_2 U_2 Q
-V_2 &= U_2 Q^2 V_2 \).
+V_2 = U_2 Q^2 V_2 \).
 
 From the infinite series representation for the fundamental matrix \( N \)
 we have
@@ -885,7 +885,7 @@ is the next theorem.
 
 \subsection*{Scripts}
 
-\input{ _scripts}
+%% \input{ _scripts}
 
 \hr
 
@@ -894,22 +894,22 @@ is the next theorem.
 \renewcommand{\theexerciseseries}{}
 \renewcommand{\theexercise}{\arabic{exercise}}
 
-\begin{exercise}
+% \begin{exercise}
 
-\end{exercise}
-\begin{solution}
+% \end{exercise}
+% \begin{solution}
 
-\end{solution}
-\begin{exercise}
-    \begin{enumerate}[label=(\alpha*)]
-    \item
-\end{enumerate}
-\end{exercise}
-\begin{solution}
-    \begin{enumerate}[label=(\alpha*)]
-    \item
-\end{enumerate}
-\end{solution}
+% \end{solution}
+% \begin{exercise}
+%     \begin{enumerate}[label=(\alpha*)]
+%     \item
+% \end{enumerate}
+% \end{exercise}
+% \begin{solution}
+%     \begin{enumerate}[label=(\alpha*)]
+%     \item
+% \end{enumerate}
+% \end{solution}
 
 \hr
 
