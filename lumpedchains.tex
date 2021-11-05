@@ -145,13 +145,17 @@ It is often convenient to partition the states of a chain into
 aggregates or lumps and to view the dynamics at a coarser level as the
 system of interest moves among the lumps.  Examples of such aggregation
 include a weather model lumping the states ``rain'' and ``snow'' into
-one state called ``bad weatehr'' or a physical model aggregating the
+one state called ``bad weather'' or a physical model aggregating the
 microstates of a physical system into so-called coarse grained
-``mesostates'' each representing many microstates.  Although the
+``mesostates'' each representing many microstates.  Other examples are
+reducing the size of the PageRank matrix used in web searches, and
+modeling clusters or ``communities'' in networks.
+
+Although the
 dynamics moving among the lumps is not necessarily Markovian in general,
 there is a natural choice for a Markov chain model on the set of lumped
 states.  This choice matches the time evolution of the original unlumped
-chain started at equilibrium. This provides bounds the error of the
+chain started at equilibrium. This provides bounds on the error of the
 dynamics predicted by the lumped chain considered as a model of the
 unlumped chain.  The goal in this section is to analyze the accuracy of
 such coarse grained models compared to the exact microscopic behavior,
@@ -296,7 +300,59 @@ chain to be lumpable.
     satisfied for the partition \( S = \set{ \set{R}, \set{N, S}} \)
     since \( p_{N S_1} = p_{NR} = 1/2 \) and \( p_{N S_1} = p_{SR} = 1/4
     \).
-\end{example}
+  \end{example}
+
+  \begin{example}
+    Note every lumping of states of a Markov chain leads to a Markov
+    chain. Let $X_n$ be a Markov chain with state space $\mathcal{X} =
+    \set{1,2, 3}$ with $X_0 = 2$ and probability transition matrix
+    \[
+      P =   \begin{pmatrix}
+    0.8 & 0.1 & 0.1 \\
+    0.2 & 0.7 & 0.1 \\
+    0   & 0.1 & 0.9
+  \end{pmatrix}.
+    \]
+    Then lump the states as $E_1 = \set{1}$ and $E_2 \set{2,3}$.  Now
+    \( \Prob{Y_1 = 1} = \Prob{X_1 = 2,3} = 0.8 \) and
+    \[
+    \Prob{Y_2 = 2, Y_1 = 2} = \Prob{Y = 2, Y
+      =2, X_1 = 2} + \Prob{Y = 2, Y=2, X_1 = 3} 
+    = 0.7 \cdot 0.8 + 0.1 \cdot 1 = 0.66.
+    \]
+
+    Next,
+    \[
+      \Prob{Y_2 = 2, \hat{X_1} = 1} = \Prob{X_1 = 1, X_2 \ge 1}
+      = 0.2 \cdot 0.2 = 0.4
+    \]
+    so that
+    \[
+      \Prob{Y_2 = 2} = \Prob{Y_2, Y_1 = 2} + \Prob{Y_2=2, Y_1 = 1} = 0.7.
+    \]
+    Now
+    \begin{multline*}
+      \Prob{Y_3 = 2, Y_2=2, Y_1=1} = \Prob{X_1=1, X_2=2, X_3 \ge 2} +\\
+       \Prob{X_1=1, X_2=3, X_3 \ge 2} = 0.2 \cdot 0.1 \cdot 0.8 + 0.2
+       \cdot 0.1 \cdot 1 = 0.36.
+     \end{multline*}
+     and
+    \begin{multline*}
+      \Prob{Y_3 = 2, Y_2=2, Y_1=2} = \Prob{X_1=2, X_2=2, Y_3 =2} +\\
+       \Prob{X_1=2, X_2=3, Y_3 =2} + \Prob{X_1=3, X_2=3, Y_3 =1} = 0.7 \cdot 0.7 \cdot 0.8 + 0.7
+       \cdot 0.7 \cdot 0.8 + 0.1 \cdot 0.9 \cdot 1 = 0.56.
+     \end{multline*}
+     Combining
+     \[
+       \Prob{Y_3 = 2, Y_2 = 1} = 0.56 + 0.036 = 0.596
+     \]
+     so
+     \[
+       \Prob{Y_3=2 \given Y_2 = 2} = 0.596/0.7 = 0.8514 \ne \Prob{Y_3
+         = 2 \given Y_2 = 2, Y_1=2} = 0.56/0.66 = 0.8485.
+     \]
+     which shows that $Y_k$ is not a Markov chain.
+  \end{example}
 
 A matrix formulation of this theorem is useful. Introduce some
 notations. Associated with a partition \( \mathbf{S} = \set{E_1, E_2,
@@ -872,6 +928,23 @@ is the next theorem.
 \section*{Section Ending Answer}
 
 \subsection*{Sources} This section is adapted from:
+The example of reducing the PageRank matrix is from
+\link{https://www.cs.mcgill.ca/~amsb/files/sf_mc_conf.pdf}{Barreto and
+  Fragoso}.
+
+The example of lumped chains from clustering or ``communities'' and he
+diagram are adapted from
+\link{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3207820/}{Piccardi}.
+
+
+The example of a lumped chain which is not Markov is adapted from
+class notes from
+\link{http://www.math.umd.edu/~slud/s650/NonMarkov.pdf}{Eric Slud,
+  Statistics 650}.
+
+The accuracy bounds on the lumped chain is adapted from
+\link{http://www.sci.sdsu.edu/~salamon/OLPpublished.pdf}{Salamon}.
+
 
 \nocite{}
 \nocite{}
