@@ -195,8 +195,70 @@ i.e.\ to bound the error in a coarse grained description.
     of the Markov chain \( X_n \).
 \end{definition}
 
+Figure~\label{fig:lumpedchains:schematic} has a schematic diagram of a
+lumped Markov chain.
+
+\begin{figure}
+  \centering
+  \begin{asy}
+real myfontsize = 12;
+real mylineskip = 1.2*myfontsize;
+pen mypen = fontsize(myfontsize, mylineskip);
+defaultpen(mypen);
+
+pair A = (-2, 2);
+pair B = (-1, 2);
+pair C = (-2, 1);
+pair D = (-1, 1);
+pair E1 = (-1.5, 1.5);
+
+pair Ee = ( 1, 2);
+pair F = ( 2, 2);
+pair G = ( 1, 1);
+pair E2 = (1.5, 1.5);
+
+pair H = (-1,-1);
+pair J = (-2,-2);
+pair Ii = (-1,-3);
+pair K = ( 0,-2);
+
+pair L = ( 1,-1);
+pair M = ( 1,-2);
+pair E3 = (-0.3, -2);
+
+dot("$x_1$", A, N); dot("$x_2$", B, N);
+dot("$x_3$", C, S); dot("$x_4$", D, SW);
+
+dot("$x_5$", Ee, N); dot("$x_6$", F, N);
+dot("$x_7$", G, S);
+
+dot("$x_8$", H, W); dot("$x_{13}$", L, W);
+dot("$x_{10}$", Ii, E); dot("$x_{11}$", K, SE); dot("$x_{12}$", M, S);
+dot("$x_{9}$",J, W);
+
+draw(B--A--C--D--A--B--C);
+draw(Ee--F--G--cycle);
+draw(H--K--J--Ii--H--J--Ii--K);
+draw(K--M--L);
+
+draw(H--D);
+draw(B--G);
+draw(L--F);
+
+filldraw(circle(E1, 0.9), fillpen=red+opacity(0.4));
+filldraw(circle(E2, 0.9), fillpen=lightblue+opacity(0.4));
+filldraw(ellipse(E3, 2.1,1.45), fillpen=green+opacity(0.4));
+
+label("$E_1$", E1+1.0*N);
+label("$E_2$", E2+1.0*N);
+label("$E_3$", E3+1.55*N);
+\end{asy}
+
+  \caption{A schematic diagram of a lumped Markov chain.}
+  \label{fig:lumpedchains:schematic}
+\end{figure}
 A lumped chain of a given Markov chain need not be a Markov chain in
-general.  [Need example]
+general.
 
 \begin{definition}
     A Markov chain with \( X_n \) state space with state space \(

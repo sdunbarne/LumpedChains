@@ -6,3 +6,6 @@
 /*.org
 /auto/
 /lumpedchains.tex.orig
+/*.asy
+/*.log
+/example.pdf
