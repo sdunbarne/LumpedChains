@@ -42,7 +42,18 @@ proofs. % Mathematicians Only: prolonged scenes of intense rigor.
 \visual{Section Starter Question}{../../../../CommonInformation/Lessons/question_mark.png}
 \section*{Section Starter Question}
 
-\hr
+The weather in the land of Oz, where it is
+    rainy, nice or snowy, with probability transition matrix
+    \[
+        P = \bordermatrix{ & R & N & S \cr
+        R & 1/2 & 1/4 & 1/4 \cr
+        N & 1/2 & 0 & 1/2 \cr
+        S & 1/4 & 1/4 & 1/2 }.
+    \]  Consider lumping the weather states into only ``good'' days
+    with nice weather and ``bad'' days with rainy or snowy weather.
+    What is the probability of going from a bad weather day to a bad
+    weather day.
+    \hr
 
 \visual{Key Concepts}{../../../../CommonInformation/Lessons/keyconcepts.png}
 \section*{Key Concepts}
@@ -51,15 +62,35 @@ proofs. % Mathematicians Only: prolonged scenes of intense rigor.
     \item
         Denote the transition probability of the Markov chain \( X_n \)
         from state \( x_i \) to state \( x_j \), for \( i, j = 1, \dots,
-        r \), by \( p_{ij} \).  A necessary and sufficient condition for
-        the Markov chain \( X \) to be lumpable with respect to the
+        k \), by \( p_{ij} \).  A necessary and sufficient condition for
+        the Markov chain \( X_n \) to be lumpable with respect to the
         partition \( S \) is that for every pair of sets \( E_{\xi} \)
-        and \( E_{\eta} \), \( sum_{x_k \in E_{\eta}} p_{ik} \) has the
+        and \( E_{\eta} \), \( \sum_{x_{\ell} \in E_{\eta}} p_{\xi,\ell} \) has the
         same value for every \( x_i \in E_{\xi} \).  These common values
         form the transition probabilities \( p_{\xi, \eta} \) for the
         lumped chain.
+    \item The \defn{distributing matrix}%
+\index{distributing
+  matrix}
+\( U \) is the \( v \times k \) matrix with entries
+\[
+    U_{ij} =
+    \begin{cases}
+        \pi_j/\sum_{k \in E_j} \pi_k & x_k \in E_j \\
+        0 & \text{otherwise}.
+    \end{cases}
+\] The rows of the distributing matrix are the stationary distribution
+restricted to \( E_j \) and renormalized so its entries add to \( 1 \).    
+        Let the \defn{collecting matrix}%
+        \index{collecting matrix}
+        \( V \) be the \( k \times v \) matrix with the \( j \)th
+        column, \( j = 1, 2, \dots, v \), is a vector with \( 1 \)s in
+        the components corresponding to states in \( E_j \), and \( 0 \)
+        elsewhere.  The collecting matrix specifies the lumped
+        probability distribution \( \hat{p} = p V \) on the partition \(
+        E \).
     \item
-        if \( P \) is the transition probability matrix of the Markov
+        If \( P \) is the transition probability matrix of the Markov
         chain \( X_n \), then \( X_n \) is lumpable with respect to the
         partition \( \mathcal{S} \), if and only if \( VUPV = PV \).
     \item
@@ -78,29 +109,29 @@ proofs. % Mathematicians Only: prolonged scenes of intense rigor.
 \begin{enumerate}
     \item
         Let \( X_n \) be a Markov chain with state space \( \mathcal{X}
-        = \set{x_1 x_2, \dots x k} \) and initial distribution \( \xi \).
-        Given a partition \( \bar{S} = \set{E_1, E_2, \dots, E_v} \) of
-        the state space \( S \), a new chain \( \bar{X}_n \) can be
+        = \set{x_1, x_2, \dots, x_k} \) and initial distribution \( X_0 \).
+        Given a partition \( \hat{S} = \set{E_1, E_2, \dots, E_r} \) of
+        the state space \( S \), a new chain \( \hat{X}_n \) can be
         defined as follows:  At the \( j \)th step, the state of the new
         chain is the set \( E_k \) when \( E_k \) contains the state of
         the \( j \)th step of the original chain.  Assign the transition
-        probabilities for \( \bar{X}_n \) as follows: The initial
+        probabilities for \( \hat{X}_n \) as follows: The initial
         distribution is
         \[
-            \Prob{\bar{X}_0 = E_i} = \Probsub{X_0 \in E_i}.
+            \Prob{\hat{X}_0 = E_i} = \Probsub{X_0 \in E_i}.
         \] Given the initial state, the transition probability for step \(
         1 \) is
         \[
-            \Prob{\bar{X}_1 = E_j \given \bar{X}_0 = E_i} = \Probsub{\xi}
+            \Prob{\hat{X}_1 = E_j \given \hat{X}_0 = E_i} = \Probsub{\xi}
             {X_0 \in E_i }.
         \] In general for the \( n \)th step
         \[
-            \Prob{\bar{X}_1 = E_t \given \bar{X}_{n-1} = E_{s_{n-1}},
-            \bar{X}_{n-2} = E_{s_{n-2}}, \dots, \bar{X}_1 = E_{s_1},
-            \bar{X}_0 = E_i} = \Probsub{\xi}{X_0 \in E_i \given X_{n-1}
+            \Prob{\hat{X}_1 = E_t \given \hat{X}_{n-1} = E_{s_{n-1}},
+            \hat{X}_{n-2} = E_{s_{n-2}}, \dots, \hat{X}_1 = E_{s_1},
+            \hat{X}_0 = E_i} = \Probsub{\xi}{X_0 \in E_i \given X_{n-1}
             \in E_{s_{n-1}}, X_{n-2} \in E_{s_{n-2}}, \dots, X_1 \in E_{s_1},
             X_0 \in E_i}.
-        \] Call this new chain \( \bar{X}_n \), a \defn{lumped chain}%
+        \] Call this new chain \( \hat{X}_n \), a \defn{lumped chain}%
         \index{lumped chain}
         of the Markov chain \( X_n \).
     \item
@@ -108,7 +139,7 @@ proofs. % Mathematicians Only: prolonged scenes of intense rigor.
         \mathcal{X} \) is said to be \defn{lumpable}%
         \index{lumpable}
         with respect to a partition \( S \) of \( \mathcal{X} \) if for
-        every starting distribution \( X_0 \) the lumped chain \( \bar{X}_n
+        every starting distribution \( X_0 \) the lumped chain \( \hat{X}_n
         \) is a Markov chain with state space \( S \) and the associated
         transition probabilities do not depend on the choice of \( X_0 \).
     \item
@@ -134,16 +165,38 @@ proofs. % Mathematicians Only: prolonged scenes of intense rigor.
         elsewhere.  The collecting matrix specifies the lumped
         probability distribution \( \hat{p} = p V \) on the partition \(
         E \).
-\end{enumerate}
+      \end{enumerate}
 
+\section*{Notation}
+\begin{enumerate}
+\item \( X_n} \) -- discrete time, discrete space Markov chain
+\item \( \mathcal{X} =
+    \set{x_1, x_2, \dots, x_k} \) -- state space
+\item \( x_i, x_j \) -- generic states of Markov chain
+\item \( k \) -- number of states in the Markov chain
+\item \( P \) -- \( k \times k \) probability transition matrix
+\item \( p_{ij} \) -- entry in the transition matrix
+\item \( X_0 \) -- initial distribution or state of the Markov
+    chain, with abuse of notation for the same notation to represent
+    both an initial probability distribution over the states and the
+    single state corresponding to a delta-distribution (certainty) on that state
+\item  \( \hat{S} = \set{E_1, E_2, \dots, E_v} \) -- partition of the
+      state space
+\item \( v \) -- number of states in the lumped chain
+\item \( E_{\xi}, E_{\eta} \) -- generic state of the lumped chain
+  with \( E_{\xi} \) the source and E_{\eta} \) the destination.
+\item   \( \hat{X}_n \) -- a lumped process
+  \item A dummy variable of summation, no meaning, meant to mimic the
+    counting variable \( n \)
+\end{enumerate}
 \hr
 
 \visual{Mathematical Ideas}{../../../../CommonInformation/Lessons/mathematicalideas.png}
 \section*{Mathematical Ideas}
 
-It is often convenient to partition the states of a chain into
-aggregates or lumps and to view the dynamics at a coarser level as the
-system of interest moves among the lumps.  Examples of such aggregation
+Partitioning the states of a chain into
+aggregates or lumps and  viewing the dynamics at a coarser level as the
+system of interest moves among the lumps is often convenient.  Examples of such aggregation
 include a weather model lumping the states ``rain'' and ``snow'' into
 one state called ``bad weather'' or a physical model aggregating the
 microstates of a physical system into so-called coarse grained
@@ -170,37 +223,43 @@ i.e.\ to bound the error in a coarse grained description.
 
 \begin{definition}
     Let \( X_n \) be a Markov chain with state space \( \mathcal{X} =
-    \set{x_1 x_2, \dots x_k} \) and initial distribution \( \xi \).
-    Given a partition \( \bar{S} = \set{E_1, E_2, \dots, E_v} \) of the
-    state space \( S \), a new chain \( \bar{X}_n \) can be defined as
+    \set{x_1, x_2, \dots, x_k} \) and initial distribution \( X_0 \).
+    Given a partition \( \hat{S} = \set{E_1, E_2, \dots, E_v} \) of the
+    state space \( \mathcal{X} \), a new chain \( \hat{X}_n \) can be defined as
     follows:  At the \( j \)th step, the state of the new chain is the
-    set \( E_k \) when \( E_k \) contains the state of the \( j \)th
-    step of the original chain.  Assign the transition probabilities for
-    \( \bar{X}_n \) as follows: The initial distribution is
+    set \( E_{\xi} \) when \( E_{\xi} \) contains the state of the \( j \)th
+    step of the original chain.  Think of the notations \( \( \hat{X}_n
+    \) and \( \hat{S} \) as ``heaping up'' the chain into the lumps. Assign the transition probabilities for
+    \( \hat{X}_n \) as follows: The initial distribution is
     \[
-        \Prob{\bar{X}_0 = E_i} = \Probsub{\xi}{X_0 \in E_i}.
-    \] Given the initial state, the transition probability for step \( 1
-    \) is
+        \Prob{\hat{X}_0 = E_{\xi}} = \Probsub{X_0}{x_0 \in E_{\xi}}.
+    \] Given the initial state, the transition probability for the
+    first step is
     \[
-        \Prob{\bar{X}_1 = E_j \given \bar{X}_0 = E_i} = \Probsub{\xi}{X_0
-        \in E_i }.
+        \Prob{\hat{X}_1 = E_{\eta} \given \hat{X}_0 = E_{\xi}} = \Probsub{X_0}{X_1
+        \in E_{\eta} }.
     \] In general for the \( n \)th step
-    \[
-        \Prob{\bar{X}_n = E_t \given \bar{X}_{n-1} = E_{t_{n-1}}, \bar{X}_
-        {n-2} = E_{t_{n-2}}, \dots, \bar{X}_1 = E_{t_1}, \bar{X}_0 = E_i}
-        = \Probsub{\xi}{X_0 \in E_i \given X_{n-1} \in E_{t_{n-1}}, X_{n-2}
-        \in E_{t_{n-2}}, \dots, X_1 \in E_{t_1}, X_0 \in E_i}.
-    \] Call this new chain \( \bar{X}_n \), a \defn{lumped chain}%
+    \begin{multline*}
+        \Prob{\hat{X}_n = E_t \given \hat{X}_{n-1} = E_{t_{n-1}}, \hat{X}_
+        {n-2} = E_{t_{n-2}}, \dots, \hat{X}_1 = E_{t_1}, \hat{X}_0 = E_i}\\
+        = \Probsub{X_0}{x_n \in E_t \given x_{n-1} \in E_{t_{n-1}}, x_{n-2}
+        \in E_{t_{n-2}}, \dots, x_1 \in E_{t_1}, x_0 \in E_i}.
+    \end{multline*}
+    Call this new process \( \hat{X}_n \), a lumped process
+    and if the lumped process is a Markov chain, it is a \defn{lumped chain}.
     \index{lumped chain}
     of the Markov chain \( X_n \).
 \end{definition}
 
-Figure~\label{fig:lumpedchains:schematic} has a schematic diagram of a
+Figure~\ref{fig:lumpedchains:schematic} has a schematic diagram of a
 lumped Markov chain.
 
 \begin{figure}
   \centering
   \begin{asy}
+
+size(5inches);
+
 real myfontsize = 12;
 real mylineskip = 1.2*myfontsize;
 pen mypen = fontsize(myfontsize, mylineskip);
@@ -258,16 +317,16 @@ label("$E_3$", E3+1.55*N);
   \label{fig:lumpedchains:schematic}
 \end{figure}
 A lumped chain of a given Markov chain need not be a Markov chain in
-general.
+general, see the second example below.
 
 \begin{definition}
-    A Markov chain with \( X_n \) state space with state space \(
+    A Markov chain with \( X_n \)  with state space \(
     \mathcal{X} \) is said to be \defn{lumpable}%
     \index{lumpable}
-    with respect to a partition \( S \) of \( \mathcal{X} \) if for
-    every starting distribution \( \xi \) the lumped chain \( \bar{X}_n \)
-    is a Markov chain with state space \( S \) and the associated
-    transition probabilities do not depend on the choice of \( \xi \).
+    with respect to a partition \( \hat{S} \) of \( \mathcal{X} \) if for
+    every starting distribution \( X_0 \) the lumped chain \( \hat{X}_n \)
+    is a Markov chain with state space \( \hat{S} \) and the associated
+    transition probabilities do not depend on the choice of \( X_0 \).
 \end{definition}
 
 The following theorem gives a necessary and sufficient for a Markov
@@ -276,48 +335,46 @@ chain to be lumpable.
 \begin{theorem}
     Denote the transition probability of the Markov chain \( X_n \) from
     state \( x_i \) to state \( x_j \), for \( i, j = 1, \dots, r \), by
-    \( p_{ij} \).  A necessary and sufficient condition for the Markov
-    chain \( X \) to be lumpable with respect to the partition \( S \)
-    is that for every pair of sets \( E_i \) and \( E_j \), \( sum_{x_k
-    \in E_j} p_{ik} \) has the same value for every \( x_i \in E_j \).
-    These common values form the transition probabilities \( \hat{p}_{ij}
+    \( p_{ij} \).   The Markov
+    chain \( X \) is lumpable with respect to the partition \( \hat{S} \)
+    if and only if for every pair of sets \( E_{\xi} \) and \( E_{\eta} \), \( \sum_{x_{\nu}
+    \in E_{\eta}} p_{i\nu} \) has the same value for every \( x_i \in E_{\xi} \).
+    These common values form the transition probabilities \( \hat{p}_{\xi,\eta}
     \) for the lumped chain.
 \end{theorem}
 
 \begin{proof}
     \begin{enumerate}
         \item
-            Necessity:
+            \( \Rightarrow \):
             \begin{enumerate}
                 \item
-                    For the chain to be lumpable, it is necessary that
+                    If the chain is lumpable, then
                     \[
-                        \Prob{\bar{X}_1 = E_j \given \bar{X}_0 = E_i} =
-                        \Probsub{\xi}{X_0 \in E_i }
-                    \] be the same for every \( \xi \) for which it is
-                    defined.  Call this common value \( \hat{p}_{ij} \).
+                        \Prob{\hat{X}_1 = E_{\eta} \given \hat{X}_0 = E_{\xi}} =
+                        \Probsub{X_0}{X_0 \in E_i }
+                    \] be the same for every \( X_0 \) for which it is
+                    defined.  Call this common value \( \hat{p}_{\xi,\eta} \).
                 \item
-                    In particular this must be the same for \( \xi \)
-                    having a \( 1 \) in its \( k \)th component for
-                    state \( x_k \in E_i \). Hence \( p_{kE_j} = \Prob{x_i
-                    \in A_j} = \hat{p}_{ij} \).
-                \item
-                    Thus the condition given is necessary.
+                    In particular this must be the same for \( X_0 \)
+                    having a \( 1 \) in its \( \nu \)th component for
+                    state \( x_{\nu} \in E_i \). Hence \( p_{\nu E_j} = \Prob{x_{\nu}
+                    \in E_j} = \hat{p}_{ij} \).
             \end{enumerate}
         \item
-            Sufficiency:
+            \( \LeftArrow \):
             \begin{enumerate}
                 \item
                     The proof must show that if the condition is
                     satisfied, the probability
-                    \[
-                        \Prob{\bar{X}_n = E_t \given \bar{X}_{n-1} = E_{t_
-                        {n-1}}, \bar{X}_{n-2} = E_{t_{n-2}}, \dots, \bar
-                        {X}_1 = E_{t_1}, \bar{X}_0 = E_i} = \Probsub{\xi}
-                        {X_0 \in E_i \given X_{n-1} \in E_{t_{n-1}}, X_{n-2}
-                        \in E_{t_{n-2}}, \dots, X_1 \in E_{t_1}, X_0 \in
+                    \begin{multline*}
+                        \Prob{\hat{X}_n = E_t \given \hat{X}_{n-1} = E_{t_
+                        {n-1}}, \hat{X}_{n-2} = E_{t_{n-2}}, \dots, \hat{X}_0 = E_i} = \\
+                    \Probsub{X_0}
+                        {x_0 \in E_i \given x_{n-1} \in E_{t_{n-1}}, x_{n-2}
+                        \in E_{t_{n-2}}, \dots,  x_0 \in
                         E_i}
-                    \] depends only on \( E_t \) and \( E_{t_{n-1}} \).
+                    \end{multline*} depends only on \( E_t \) and \( E_{t_{n-1}} \).
                 \item
                     This conditional probability may be written in the
                     form \( \Probsub{\xi'}{x_1 \in E_t} \) where \( \xi'
@@ -353,8 +410,9 @@ chain to be lumpable.
     and from \( S \) to \( N \) are the same so the condition for
     lumpability is satisfied.  The new transition matrix is
     \[
-        P = \bordermatrix{ G & B \cr
-        G & 0 & 1 \cr
+      P = \bordermatrix{
+          & G   & B \cr
+        G & 0   & 1 \cr
         B & 1/4 & 3/4}.
     \]
 
@@ -365,7 +423,7 @@ chain to be lumpable.
   \end{example}
 
   \begin{example}
-    Note every lumping of states of a Markov chain leads to a Markov
+    Not every lumping of states of a Markov chain leads to a Markov
     chain. Let $X_n$ be a Markov chain with state space $\mathcal{X} =
     \set{1,2, 3}$ with $X_0 = 2$ and probability transition matrix
     \[
@@ -988,6 +1046,14 @@ is the next theorem.
 
 \visual{Section Starter Question}{../../../../CommonInformation/Lessons/question_mark.png}
 \section*{Section Ending Answer}
+
+The probability of going from R to either R or S is \( \frac{1}{4} +
+\frac{1}{2} = \frac{3}{4}\).  
+The probability of going from S to either R or S is \( \frac{1}{2} +
+\frac{1}{4} = \frac{3}{4}\).  Any probability combination of being in
+the states R and S leads to a probability \( \frac{3}{4} \) of being
+in the states R or S, so the probability of going from bad weather to
+bad weather is \( \frac{3}{4} \).
 
 \subsection*{Sources} This section is adapted from:
 The example of reducing the PageRank matrix is from
