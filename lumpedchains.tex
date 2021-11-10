@@ -405,7 +405,7 @@ chain to be lumpable.
         S & 1/4 & 1/4 & 1/2 }.
     \] Now consider lumping the weather states into only ``good'' days
     with nice weather and ``bad'' days with rainy or snowy weather.
-    That is, choose the partition \( S = \set{ \set{N}, \set{R,S}} =
+    That is, choose the partition \( \hat{S} = \set{ \set{N}, \set{R,S}} =
     \set{G, B} \). The probabilities of moving from \( R \) to \( N \)
     and from \( S \) to \( N \) are the same so the condition for
     lumpability is satisfied.  The new transition matrix is
@@ -417,15 +417,17 @@ chain to be lumpable.
     \]
 
     On the other hand, notice that the condition for lumpability is not
-    satisfied for the partition \( S = \set{ \set{R}, \set{N, S}} \)
-    since \( p_{N S_1} = p_{NR} = 1/2 \) and \( p_{N S_1} = p_{SR} = 1/4
+    satisfied for the partition \( \hat{S} = \set{ \set{R}, \set{N, S}} \)
+    since \( p_{N S} = p_{NR} = 1/2 \) and \( p_{NR} = p_{SR} = 1/4
     \).
   \end{example}
 
   \begin{example}
-    Not every lumping of states of a Markov chain leads to a Markov
-    chain. Let $X_n$ be a Markov chain with state space $\mathcal{X} =
-    \set{1,2, 3}$ with $X_0 = 2$ and probability transition matrix
+    An arbitrary lumping of states of a Markov chain does not
+    necessarily lead to a Markov
+    chain.  Let $X_n$ be a Markov chain with state space $\mathcal{X} =
+    \set{1,2, 3}$ with $X_0 = 2$ (or as a probability distribution,
+    $X_0 = (0,1,0)$) and probability transition matrix
     \[
       P =   \begin{pmatrix}
     0.8 & 0.1 & 0.1 \\
@@ -433,45 +435,50 @@ chain to be lumpable.
     0   & 0.1 & 0.9
   \end{pmatrix}.
     \]
-    Then lump the states as $E_1 = \set{1}$ and $E_2 \set{2,3}$.  Now
-    \( \Prob{Y_1 = 1} = \Prob{X_1 = 2,3} = 0.8 \) and
+    Then lump the states as $E_1 = \set{1}$ and $E_2 = \set{2,3}$.  First,
+    \( \Prob{\hat{X}_1 = 1} = \Prob{X_1 = 2,3} = 0.7 + 0.1 = 0.8 \) and
     \[
-    \Prob{Y_2 = 2, Y_1 = 2} = \Prob{Y = 2, Y
-      =2, X_1 = 2} + \Prob{Y = 2, Y=2, X_1 = 3} 
-    = 0.7 \cdot 0.8 + 0.1 \cdot 1 = 0.66.
+      \Prob{\hat{X}_2 = 2, \hat{X}_1 = 2} =
+      \Prob{\hat{X}_2 = 2, X_1 = 2} + \Prob{\hat{X}_2 = 2, X_1 = 3} 
+    = 0.8 \cdot 0.7 + (0.9 + 0.1)  \cdot 0.1 = 0.66.
     \]
-
-    Next,
+    Second,
     \[
-      \Prob{Y_2 = 2, \hat{X_1} = 1} = \Prob{X_1 = 1, X_2 \ge 1}
-      = 0.2 \cdot 0.2 = 0.4
+      \Prob{\hat{X}_2 = 2, \hat{X_1} = 1} = \Prob{X_1 = 1, X_2 \ge 2}
+      = 0.2 \cdot (0.1 + 0.1) = 0.04.
     \]
-    so that
+    So 
     \[
-      \Prob{Y_2 = 2} = \Prob{Y_2, Y_1 = 2} + \Prob{Y_2=2, Y_1 = 1} = 0.7.
+      \Prob{\hat{X}_2 = 2} = \Prob{\hat{X}_2, \hat{X}_1 = 2} + \Prob{\hat{X}_2=2, \hat{X}_1 = 1} = 0.7.
     \]
     Now
     \begin{multline*}
-      \Prob{Y_3 = 2, Y_2=2, Y_1=1} = \Prob{X_1=1, X_2=2, X_3 \ge 2} +\\
-       \Prob{X_1=1, X_2=3, X_3 \ge 2} = 0.2 \cdot 0.1 \cdot 0.8 + 0.2
-       \cdot 0.1 \cdot 1 = 0.36.
+      \Prob{\hat{X}_3 = 2, \hat{X}_2=2, \hat{X}_1=1} = \Prob{X_1=1, X_2=2, X_3 \ge 2} +\\
+       \Prob{X_1=1, X_2=3, X_3 \ge 2} = 0.2 \cdot 0.1 \cdot (0.7+0.1) + 0.2
+       \cdot 0.1 \cdot (0.1+0.9) = 0.036.
      \end{multline*}
      and
     \begin{multline*}
-      \Prob{Y_3 = 2, Y_2=2, Y_1=2} = \Prob{X_1=2, X_2=2, Y_3 =2} +\\
-       \Prob{X_1=2, X_2=3, Y_3 =2} + \Prob{X_1=3, X_2=3, Y_3 =1} = 0.7 \cdot 0.7 \cdot 0.8 + 0.7
-       \cdot 0.7 \cdot 0.8 + 0.1 \cdot 0.9 \cdot 1 = 0.56.
+      \Prob{\hat{X}_3 = 2, \hat{X}_2=2, \hat{X}_1=2} = \\
+      \Prob{X_1=2, X_2=2, \hat{X}_3 =2} +
+      \Prob{X_1=2, X_2=3, \hat{X}_3 =2} +
+      \Prob{X_1=3, X_2=2, \hat{X}_3 =2}  +
+      \Prob{X_1=3, X_2=3, \hat{X}_3 =2} =
+      0.7 \cdot 0.7 \cdot (0.7 + 0.1) +
+      0.7 \cdot 0.1 \cdot (0.1 + 0.9) +
+      0.1 \cdot 0.1 \cdot (0.7 + 0.1) +
+      0.1 \cdot 0.9 \cdot (0.1 + 0.9) = 0.56.
      \end{multline*}
-     Combining
+     Combining the previous two probabilities
      \[
-       \Prob{Y_3 = 2, Y_2 = 1} = 0.56 + 0.036 = 0.596
+       \Prob{\hat{X}_3 = 2, \hat{X}_2 = 2} = 0.56 + 0.036 = 0.596
      \]
      so
      \[
-       \Prob{Y_3=2 \given Y_2 = 2} = 0.596/0.7 = 0.8514 \ne \Prob{Y_3
-         = 2 \given Y_2 = 2, Y_1=2} = 0.56/0.66 = 0.8485.
+       \Prob{\hat{X}_3=2 \given \hat{X}_2 = 2} = 0.596/0.7 \approx 0.8514 \ne \Prob{\hat{X}_3
+         = 2 \given \hat{X}_2 = 2, \hat{X}_1=2} = 0.56/0.66 \approx 0.8485
      \]
-     which shows that $Y_k$ is not a Markov chain.
+     showing that $\hat{X}_k$ is not a Markov chain.
   \end{example}
 
 A matrix formulation of this theorem is useful. Introduce some
